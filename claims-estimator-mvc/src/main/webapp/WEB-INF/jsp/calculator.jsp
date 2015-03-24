@@ -3,7 +3,7 @@
 <%@ include file="/WEB-INF/jsp/header.jsp"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
-
+<body>
 <form:form commandName="calculationModel">
 	<fieldset>
 		<legend><span>Integer Calculator</span></legend>
@@ -18,5 +18,5 @@
 		<br><input type="submit" value="Calculate" />
 	</fieldset>
 </form:form>
-
+</body>
 <%@ include file="/WEB-INF/jsp/footer.jsp"%>

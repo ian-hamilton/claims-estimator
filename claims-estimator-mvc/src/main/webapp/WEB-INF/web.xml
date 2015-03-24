@@ -55,6 +55,8 @@
 	<servlet-mapping>
 		<servlet-name>statCont</servlet-name>
 		<url-pattern>*.css</url-pattern>
+		<url-pattern>*.less</url-pattern>
+		<url-pattern>*.js</url-pattern>
 	</servlet-mapping>
 
 	<session-config>

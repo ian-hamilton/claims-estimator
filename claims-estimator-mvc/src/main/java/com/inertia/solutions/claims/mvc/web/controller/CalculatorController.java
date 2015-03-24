@@ -15,7 +15,7 @@ import com.inertia.solutions.claims.mvc.web.model.CalculationModel;
 import com.inertia.solutions.claims.mvc.web.model.OperatorModel;
 
 /*
- * http://localhost:8080/mvc-example/calculator
+ * http://localhost:8080/claims-estimator-mvc/calculator
  */
 
 @Controller
