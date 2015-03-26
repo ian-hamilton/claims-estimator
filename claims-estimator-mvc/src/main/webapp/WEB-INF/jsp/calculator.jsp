@@ -1,8 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/jsp/includes.jsp"%>
 <%@ include file="/WEB-INF/jsp/header.jsp"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
+
+
 <body>
 <form:form commandName="calculationModel">
 	<fieldset>
@@ -19,4 +19,5 @@
 	</fieldset>
 </form:form>
 </body>
+
 <%@ include file="/WEB-INF/jsp/footer.jsp"%>

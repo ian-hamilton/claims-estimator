@@ -45,40 +45,35 @@
 				</form>
 			</div>
 			<div class="col-md-4 column">
-				<div class="row clearfix">
-					<div class="col-md-12 column">
-						<div class="row clearfix">
-							<div class="col-md-6 column"></div>
-							<div class="col-md-6 column"></div>
-						</div>
+			
+			<div class="list-group">
+					<a href="#" class="list-group-item">
 						<blockquote>
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 								Integer posuere erat a ante.</p>
 							<small>Someone famous <cite>Source Title</cite></small>
 						</blockquote>
-					</div>
-				</div>
-				<div class="row clearfix">
-					<div class="col-md-12 column">
+					</a>
+					<a href="#" class="list-group-item">
 						<blockquote>
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 								Integer posuere erat a ante.</p>
 							<small>Someone famous <cite>Source Title</cite></small>
 						</blockquote>
-					</div>
-				</div>
-				<div class="row clearfix">
-					<div class="col-md-12 column">
+					</a>
+					<a href="#" class="list-group-item">
 						<blockquote>
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 								Integer posuere erat a ante.</p>
 							<small>Someone famous <cite>Source Title</cite></small>
 						</blockquote>
-					</div>
-				</div>
+					</a>
+			</div>
+				
 			</div>
 		</div>
 	</div>
+	
 </body>
 
 <%@ include file="/WEB-INF/jsp/footer.jsp"%>
