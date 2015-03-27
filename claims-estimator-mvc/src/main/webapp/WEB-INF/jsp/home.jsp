@@ -62,6 +62,7 @@
 						</blockquote>
 					</a>
 					<a href="#" class="list-group-item">
+						<img src="<c:url value="/images/success.png"/>" alt="Claims Success" class="img-responsive large-icon">
 						<blockquote>
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 								Integer posuere erat a ante.</p>
@@ -74,6 +75,6 @@
 		</div>
 	</div>
 	
-</body>
+
 
 <%@ include file="/WEB-INF/jsp/footer.jsp"%>
