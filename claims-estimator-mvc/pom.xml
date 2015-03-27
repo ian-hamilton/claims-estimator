@@ -60,11 +60,35 @@
 	</dependencies>
 
 	<build>
+<!-- 	    <resources> -->
+<!--       <resource> -->
+<!--       <directory>src/main/resources</directory> -->
+<!--         <excludes> -->
+<!--           <exclude>bootstrap/fonts/**</exclude> -->
+<!--         </excludes> -->
+<!--         <includes> -->
+<!--         	<include>bootstrap/dist/**</include> -->
+<!--         </includes> -->
+<!--       </resource> -->
+<!--     </resources> -->
 		<plugins>
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 			</plugin>
+			      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>2.6</version>
+        <configuration>
+          <webResources>
+            <resource>
+              <!-- this is relative to the pom.xml directory -->
+              <directory>src/main/web-resources/bootstrap/dist/</directory>
+            </resource>
+          </webResources>
+        </configuration>
+      </plugin>
 		</plugins>
 	</build>
 
