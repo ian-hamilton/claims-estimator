@@ -1,7 +1,7 @@
 {
-  "name": "bootstrap",
-  "description": "The most popular front-end framework for developing responsive, mobile first projects on the web.",
-  "version": "3.3.4",
+  "name": "claims",
+  "description": "The mix in build for claims and bootstrap",
+  "version": "1.0.0",
   "keywords": [
     "css",
     "less",
@@ -16,19 +16,19 @@
   "scripts": {
     "test": "grunt test"
   },
-  "style": "dist/css/bootstrap.css",
-  "less": "less/bootstrap.less",
+  "style": "dist/css/styles.css",
+  "less": "less/styles.less",
   "main": "./dist/js/npm",
   "repository": {
     "type": "git",
-    "url": "https://github.com/twbs/bootstrap.git"
+    "url": "https://github.com/ian-hamilton/claims-estimator.git"
   },
   "bugs": {
-    "url": "https://github.com/twbs/bootstrap/issues"
+    "url": ""
   },
   "license": {
     "type": "MIT",
-    "url": "https://github.com/twbs/bootstrap/blob/master/LICENSE"
+    "url": ""
   },
   "devDependencies": {
     "btoa": "~1.1.2",
@@ -66,22 +66,22 @@
   },
   "files": [
     "dist",
-    "fonts",
+    "src/bootstrap/fonts",
     "grunt/*.js",
     "grunt/*.json",
-    "js/*.js",
-    "less/**/*.less",
+    "src/bootstrap/js/*.js",
+    "src/bootstrap/less/**/*.less",
     "Gruntfile.js",
     "LICENSE"
   ],
   "jspm": {
-    "main": "js/bootstrap",
+    "main": "less/bootstrap/js/bootstrap",
     "directories": {
       "example": "examples",
       "lib": "dist"
     },
     "shim": {
-      "js/bootstrap": {
+      "less/bootstrap/js/bootstrap": {
         "imports": "jquery",
         "exports": "$"
       }

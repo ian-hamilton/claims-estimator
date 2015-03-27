@@ -84,7 +84,7 @@
           <webResources>
             <resource>
               <!-- this is relative to the pom.xml directory -->
-              <directory>src/main/web-resources/bootstrap/dist/</directory>
+              <directory>src/main/web-resources/styles-npm/dist/</directory>
             </resource>
           </webResources>
         </configuration>

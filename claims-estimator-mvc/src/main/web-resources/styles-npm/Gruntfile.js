@@ -1,8 +1,8 @@
 /*!
- * Bootstrap's Gruntfile
- * http://getbootstrap.com
- * Copyright 2013-2015 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * Claims's Gruntfile
+ * http://localhost:8080
+ * Copyright 2013-2015 Intertia Solutions, Inc.
+ * Licensed under MIT (https://github.com/)
  */
 
 module.exports = function (grunt) {
@@ -21,7 +21,7 @@ module.exports = function (grunt) {
   var generateGlyphiconsData = require('./grunt/bs-glyphicons-data-generator.js');
   var BsLessdocParser = require('./grunt/bs-lessdoc-parser.js');
   var getLessVarsData = function () {
-    var filePath = path.join(__dirname, 'less/variables.less');
+    var filePath = path.join(__dirname, 'src/bootstrap/less/variables.less');
     var fileContent = fs.readFileSync(filePath, { encoding: 'utf8' });
     var parser = new BsLessdocParser(fileContent);
     return { sections: parser.parseFile() };
@@ -42,7 +42,7 @@ module.exports = function (grunt) {
     // Metadata.
     pkg: grunt.file.readJSON('package.json'),
     banner: '/*!\n' +
-            ' * Bootstrap v<%= pkg.version %> (<%= pkg.homepage %>)\n' +
+            ' * Interia v<%= pkg.version %> (<%= pkg.homepage %>)\n' +
             ' * Copyright 2011-<%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
             ' * Licensed under <%= pkg.license.type %> (<%= pkg.license.url %>)\n' +
             ' */\n',
@@ -51,13 +51,12 @@ module.exports = function (grunt) {
 
     // Task configuration.
     clean: {
-      dist: 'dist',
-      docs: 'docs/dist'
+      dist: 'dist'
     },
 
     jshint: {
       options: {
-        jshintrc: 'js/.jshintrc'
+        jshintrc: 'src/bootstrap/js/.jshintrc'
       },
       grunt: {
         options: {
@@ -66,22 +65,19 @@ module.exports = function (grunt) {
         src: ['Gruntfile.js', 'grunt/*.js']
       },
       core: {
-        src: 'js/*.js'
+        src: 'src/bootstrap/js/*.js'
       },
       test: {
         options: {
-          jshintrc: 'js/tests/unit/.jshintrc'
+          jshintrc: 'src/bootstrap/js/tests/unit/.jshintrc'
         },
-        src: 'js/tests/unit/*.js'
-      },
-      assets: {
-        src: ['docs/assets/js/src/*.js', 'docs/assets/js/*.js', '!docs/assets/js/*.min.js']
+        src: 'src/bootstrap/js/tests/unit/*.js'
       }
     },
 
     jscs: {
       options: {
-        config: 'js/.jscsrc'
+        config: 'src/bootstrap/js/.jscsrc'
       },
       grunt: {
         src: '<%= jshint.grunt.src %>'
@@ -107,18 +103,18 @@ module.exports = function (grunt) {
       },
       bootstrap: {
         src: [
-          'js/transition.js',
-          'js/alert.js',
-          'js/button.js',
-          'js/carousel.js',
-          'js/collapse.js',
-          'js/dropdown.js',
-          'js/modal.js',
-          'js/tooltip.js',
-          'js/popover.js',
-          'js/scrollspy.js',
-          'js/tab.js',
-          'js/affix.js'
+          'src/bootstrap/js/transition.js',
+          'src/bootstrap/js/alert.js',
+          'src/bootstrap/js/button.js',
+          'src/bootstrap/js/carousel.js',
+          'src/bootstrap/js/collapse.js',
+          'src/bootstrap/js/dropdown.js',
+          'src/bootstrap/js/modal.js',
+          'src/bootstrap/js/tooltip.js',
+          'src/bootstrap/js/popover.js',
+          'src/bootstrap/js/scrollspy.js',
+          'src/bootstrap/js/tab.js',
+          'src/bootstrap/js/affix.js'
         ],
         dest: 'dist/js/<%= pkg.name %>.js'
       }
@@ -131,22 +127,14 @@ module.exports = function (grunt) {
       core: {
         src: '<%= concat.bootstrap.dest %>',
         dest: 'dist/js/<%= pkg.name %>.min.js'
-      },
-      customize: {
-        src: configBridge.paths.customizerJs,
-        dest: 'docs/assets/js/customize.min.js'
-      },
-      docsJs: {
-        src: configBridge.paths.docsJs,
-        dest: 'docs/assets/js/docs.min.js'
       }
     },
 
     qunit: {
       options: {
-        inject: 'js/tests/unit/phantom.js'
+        inject: 'src/bootstrap/js/tests/unit/phantom.js'
       },
-      files: 'js/tests/index.html'
+      files: 'src/bootstrap/js/tests/index.html'
     },
 
     less: {
@@ -158,19 +146,8 @@ module.exports = function (grunt) {
           sourceMapURL: '<%= pkg.name %>.css.map',
           sourceMapFilename: 'dist/css/<%= pkg.name %>.css.map'
         },
-        src: 'less/bootstrap.less',
+        src: 'src/root.less',
         dest: 'dist/css/<%= pkg.name %>.css'
-      },
-      compileTheme: {
-        options: {
-          strictMath: true,
-          sourceMap: true,
-          outputSourceFiles: true,
-          sourceMapURL: '<%= pkg.name %>-theme.css.map',
-          sourceMapFilename: 'dist/css/<%= pkg.name %>-theme.css.map'
-        },
-        src: 'less/theme.less',
-        dest: 'dist/css/<%= pkg.name %>-theme.css'
       }
     },
 
@@ -183,42 +160,16 @@ module.exports = function (grunt) {
           map: true
         },
         src: 'dist/css/<%= pkg.name %>.css'
-      },
-      theme: {
-        options: {
-          map: true
-        },
-        src: 'dist/css/<%= pkg.name %>-theme.css'
-      },
-      docs: {
-        src: ['docs/assets/css/anchor.css', 'docs/assets/css/src/docs.css']
-      },
-      examples: {
-        expand: true,
-        cwd: 'docs/examples/',
-        src: ['**/*.css'],
-        dest: 'docs/examples/'
       }
     },
 
     csslint: {
       options: {
-        csslintrc: 'less/.csslintrc'
+        csslintrc: 'src/bootstrap/less/.csslintrc'
       },
       dist: [
-        'dist/css/bootstrap.css',
-        'dist/css/bootstrap-theme.css'
-      ],
-      examples: [
-        'docs/examples/**/*.css'
-      ],
-      docs: {
-        options: {
-          ids: false,
-          'overqualified-elements': false
-        },
-        src: 'docs/assets/css/src/docs.css'
-      }
+        'dist/css/styles.css'
+      ]
     },
 
     cssmin: {
@@ -232,19 +183,6 @@ module.exports = function (grunt) {
       minifyCore: {
         src: 'dist/css/<%= pkg.name %>.css',
         dest: 'dist/css/<%= pkg.name %>.min.css'
-      },
-      minifyTheme: {
-        src: 'dist/css/<%= pkg.name %>-theme.css',
-        dest: 'dist/css/<%= pkg.name %>-theme.min.css'
-      },
-      docs: {
-        src: [
-          'docs/assets/css/src/pygments-manni.css',
-          'docs/assets/css/src/anchor.css',
-          'docs/assets/css/src/docs.css'
-
-        ],
-        dest: 'docs/assets/css/docs.min.css'
       }
     },
 
@@ -260,39 +198,22 @@ module.exports = function (grunt) {
 
     csscomb: {
       options: {
-        config: 'less/.csscomb.json'
+        config: 'src/bootstrap/less/.csscomb.json'
       },
       dist: {
         expand: true,
         cwd: 'dist/css/',
         src: ['*.css', '!*.min.css'],
         dest: 'dist/css/'
-      },
-      examples: {
-        expand: true,
-        cwd: 'docs/examples/',
-        src: '**/*.css',
-        dest: 'docs/examples/'
-      },
-      docs: {
-        src: 'docs/assets/css/src/docs.css',
-        dest: 'docs/assets/css/src/docs.css'
       }
     },
 
     copy: {
       fonts: {
         expand: true,
+		cwd: 'src/bootstrap/', 
         src: 'fonts/*',
         dest: 'dist/'
-      },
-      docs: {
-        expand: true,
-        cwd: 'dist/',
-        src: [
-          '**/*'
-        ],
-        dest: 'docs/dist/'
       }
     },
 
@@ -454,8 +375,8 @@ module.exports = function (grunt) {
   grunt.registerTask('dist-js', ['concat', 'uglify:core', 'commonjs']);
 
   // CSS distribution task.
-  grunt.registerTask('less-compile', ['less:compileCore', 'less:compileTheme']);
-  grunt.registerTask('dist-css', ['less-compile', 'autoprefixer:core', 'autoprefixer:theme', 'usebanner', 'csscomb:dist', 'cssmin:minifyCore', 'cssmin:minifyTheme']);
+  grunt.registerTask('less-compile', ['less:compileCore']);
+  grunt.registerTask('dist-css', ['less-compile', 'autoprefixer:core','usebanner', 'csscomb:dist', 'cssmin:minifyCore']);
 
   // Full distribution task.
   grunt.registerTask('dist', ['clean:dist', 'dist-css', 'copy:fonts', 'dist-js']);
