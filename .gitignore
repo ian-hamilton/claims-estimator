@@ -15,3 +15,5 @@ pom.xml~
 bin/
 .metadata
 
+#bootstrap
+node_modules/
