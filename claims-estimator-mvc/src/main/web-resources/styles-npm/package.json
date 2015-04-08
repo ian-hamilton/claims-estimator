@@ -1,5 +1,5 @@
 {
-  "name": "claims",
+  "name": "claims-estimator",
   "description": "The mix in build for claims and bootstrap",
   "version": "1.0.0",
   "keywords": [
