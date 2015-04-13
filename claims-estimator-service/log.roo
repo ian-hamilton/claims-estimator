@@ -1,0 +1,18 @@
+// Spring Roo 1.3.1.RC1 [rev 4877cfb] log opened at 2015-04-13 12:21:53
+project --topLevelPackage com.inertia.solutions.claims.service --projectName claims-estimator-service
+mongo setup 
+enum type --class ~.domain.ClaimType
+enum constant --name PROPERTY
+enum constant --name BUILDING
+entity mongo --class ~.domain.ClaimItem
+field string claimItemName --notNull
+field string ClaimItemDesc --notNull
+field number --type java.lang.Double claimItemAmount --notNull
+entity mongo --class ~.domain.Claim
+field string userId
+field number --type java.lang.Double claimTotal
+field number --type java.lang.Double claimCurrentTotal
+field enum --type ClaimType claimType
+field set --fieldName claimItems --type ClaimItem
+quit
+// Spring Roo 1.3.1.RC1 [rev 4877cfb] log closed at 2015-04-13 12:22:33
