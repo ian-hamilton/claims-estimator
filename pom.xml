@@ -12,33 +12,62 @@
 
 	<modules>
 		<module>claims-estimator-mvc</module>
+		<module>claims-estimator-service</module>
 	</modules>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<java-version>1.7</java-version>
-		<maven-compile-version>3.1</maven-compile-version>
-		<sonar-version>2.0</sonar-version>
+		<java.version>1.7</java.version>
+		<maven.compile.version>3.1</maven.compile.version>
+		<sonar.version>2.0</sonar.version>
 		<checkstyle-version>2.11</checkstyle-version>
 
-		<spring-version>3.2.4.RELEASE</spring-version>
-		<log4j-version>1.2.14</log4j-version>
-		<hibernate-version>4.2.0.Final</hibernate-version>
-		<aspectj-version>1.7.3</aspectj-version>
-		<commons-lang-version>2.3</commons-lang-version>
-		<cxf-version>2.7.0</cxf-version>
-		<hibernate-version>4.2.0.Final</hibernate-version>
-		<commons-dbcp-version>1.4</commons-dbcp-version>
-		<postgres-version>9.2-1003-jdbc4</postgres-version>
-		<jstl-version>1.2</jstl-version>
-		<jackson.version>1.9.10</jackson.version>
+		<spring.version>3.2.6.RELEASE</spring.version>
+		<spring.data.version>1.3.3.RELEASE</spring.data.version>
+		<log4j.version>1.2.14</log4j.version>
+		<hibernate.version>4.2.0.Final</hibernate.version>
+		<aspectj.version>1.7.3</aspectj.version>
+		<commons.lang.version>2.3</commons.lang.version>
+		<hibernate.version>4.2.0.Final</hibernate.version>
+		<jstl.version>1.2</jstl.version>
+		<javax.version>2.5</javax.version>
 
-		<junit-version>4.11</junit-version>
-		<mockito-version>1.9.5</mockito-version>
-		<jacoco-version>0.6.3.201306030806</jacoco-version>
-		<pittest-version>0.31</pittest-version>
+		<!-- roo needs -->
+		<aspectj.version>1.8.1</aspectj.version>
+		<roo.version>1.3.1.RC1</roo.version>
+		<slf4j.version>1.7.5</slf4j.version>
+		<flexjson.version>2.1</flexjson.version>
+		<commons.lang3.version>3.1</commons.lang3.version>
+
+		<junit.version>4.11</junit.version>
+		<mockito.version>1.9.5</mockito.version>
+		<jacoco.version>0.6.3.201306030806</jacoco.version>
+		<pittest.version>0.31</pittest.version>
 	</properties>
+
+	<repositories>
+		<repository>
+			<id>spring-maven-release</id>
+			<name>Spring Maven Release Repository</name>
+			<url>http://maven.springframework.org/release</url>
+		</repository>
+		<repository>
+			<id>spring-maven-milestone</id>
+			<name>Spring Maven Milestone Repository</name>
+			<url>http://maven.springframework.org/milestone</url>
+		</repository>
+		<repository>
+			<id>spring-roo-repository</id>
+			<name>Spring Roo Repository</name>
+			<url>http://spring-roo-repository.springsource.org/release</url>
+		</repository>
+		<repository>
+			<id>spring-maven-snapshot</id>
+			<url>http://maven.springframework.org/milestone</url>
+			<name>Spring Maven MILESTONE Repository</name>
+		</repository>
+	</repositories>
 
 	<dependencyManagement>
 		<dependencies>
@@ -46,64 +75,96 @@
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-core</artifactId>
-				<version>${spring-version}</version>
+				<version>${spring.version}</version>
 			</dependency>
 
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-context</artifactId>
-				<version>${spring-version}</version>
+				<version>${spring.version}</version>
 			</dependency>
 
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-aop</artifactId>
-				<version>${spring-version}</version>
+				<version>${spring.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aspects</artifactId>
+				<version>${spring.version}</version>
 			</dependency>
 
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-web</artifactId>
-				<version>${spring-version}</version>
+				<version>${spring.version}</version>
 			</dependency>
 
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-webmvc</artifactId>
-				<version>${spring-version}</version>
+				<version>${spring.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.data</groupId>
+				<artifactId>spring-data-mongodb</artifactId>
+				<version>${spring.data.version}</version>
 			</dependency>
 
 			<!-- Javax -->
 			<dependency>
 				<groupId>javax.servlet</groupId>
 				<artifactId>jstl</artifactId>
-				<version>${jstl-version}</version>
+				<version>${jstl.version}</version>
 			</dependency>
 
 			<dependency>
-				<groupId>org.codehaus.jackson</groupId>
-				<artifactId>jackson-mapper-asl</artifactId>
-				<version>${jackson.version}</version>
+				<groupId>javax.servlet</groupId>
+				<artifactId>servlet-api</artifactId>
+				<version>${javax.version}</version>
+				<scope>provided</scope>
 			</dependency>
+
+			<dependency>
+				<groupId>javax.persistence</groupId>
+				<artifactId>persistence-api</artifactId>
+				<version>1.0</version>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.validation</groupId>
+				<artifactId>validation-api</artifactId>
+				<version>1.0.0.GA</version>
+			</dependency>
+
 
 			<!-- Aspects -->
 			<dependency>
 				<groupId>org.aspectj</groupId>
 				<artifactId>aspectjweaver</artifactId>
-				<version>${aspectj-version}</version>
+				<version>${aspectj.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjrt</artifactId>
+				<version>${aspectj.version}</version>
 			</dependency>
 
 			<!-- Hibernate -->
 			<dependency>
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-entitymanager</artifactId>
-				<version>${hibernate-version}</version>
+				<version>${hibernate.version}</version>
 			</dependency>
 
 			<dependency>
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-validator</artifactId>
-				<version>${hibernate-version}</version>
+				<version>${hibernate.version}</version>
 			</dependency>
 
 			<!-- Database -->
@@ -123,13 +184,47 @@
 			<dependency>
 				<groupId>log4j</groupId>
 				<artifactId>log4j</artifactId>
-				<version>${log4j-version}</version>
+				<version>${log4j.version}</version>
 			</dependency>
+
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>jcl-over-slf4j</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-log4j12</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+
+			<!-- Utility -->
 
 			<dependency>
 				<groupId>commons-lang</groupId>
 				<artifactId>commons-lang</artifactId>
-				<version>${commons-lang-version}</version>
+				<version>${commons.lang.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>${commons.lang3.version}</version>
+			</dependency>
+
+			<!-- JSON -->
+
+			<dependency>
+				<groupId>net.sf.flexjson</groupId>
+				<artifactId>flexjson</artifactId>
+				<version>${flexjson.version}</version>
 			</dependency>
 
 			<!-- CXF WS -->
@@ -150,15 +245,30 @@
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
-				<version>${junit-version}</version>
+				<version>${junit.version}</version>
 				<scope>test</scope>
 			</dependency>
 
 			<dependency>
 				<groupId>org.mockito</groupId>
 				<artifactId>mockito-all</artifactId>
-				<version>${mockito-version}</version>
+				<version>${mockito.version}</version>
 				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-test</artifactId>
+				<version>${spring.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<!-- Roo Dependencies -->
+			<dependency>
+				<groupId>org.springframework.roo</groupId>
+				<artifactId>org.springframework.roo.annotations</artifactId>
+				<version>${roo.version}</version>
+				<scope>provided</scope>
 			</dependency>
 
 		</dependencies>
@@ -169,10 +279,10 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${maven-compile-version}</version>
+				<version>${maven.compile.version}</version>
 				<configuration>
-					<source>${java-version}</source>
-					<target>${java-version}</target>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -206,12 +316,12 @@
 				<plugin>
 					<groupId>org.pitest</groupId>
 					<artifactId>pitest-maven</artifactId>
-					<version>${pittest-version}</version>
+					<version>${pittest.version}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.jacoco</groupId>
 					<artifactId>jacoco-maven-plugin</artifactId>
-					<version>${jacoco-version}</version>
+					<version>${jacoco.version}</version>
 					<configuration>
 						<excludes>
 							<exclude>**/Launcher*</exclude>
@@ -281,7 +391,7 @@
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>sonar-maven-plugin</artifactId>
-					<version>${sonar-version}</version>
+					<version>${sonar.version}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
