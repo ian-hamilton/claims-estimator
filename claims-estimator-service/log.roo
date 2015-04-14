@@ -14,20 +14,9 @@ field number --type java.lang.Double claimTotal
 field number --type java.lang.Double claimCurrentTotal
 field enum --type ClaimType claimType
 field set --fieldName claimItems --type ClaimItem
-quit
-// Spring Roo 1.3.1.RC1 [rev 4877cfb] log closed at 2015-04-13 12:22:33
-// Spring Roo 1.3.1.RC1 [rev 4877cfb] log opened at 2015-04-13 12:25:55
-// [failed] repository mongo --interface ~.repository.ClaimRepository --entity ~.domain.Claim
-quit
-// Spring Roo 1.3.1.RC1 [rev 4877cfb] log closed at 2015-04-13 12:41:57
-// Spring Roo 1.3.1.RC1 [rev 4877cfb] log opened at 2015-04-13 14:03:14
-// [failed] repository mongo --interface ~.repository.ClaimRepository --entity ~.domain.Claim
-quit
-// Spring Roo 1.3.1.RC1 [rev 4877cfb] log closed at 2015-04-13 14:08:31
 // Spring Roo 1.3.1.RELEASE [rev f4f5256] log opened at 2015-04-13 14:11:04
 repository mongo --interface ~.repository.ClaimRepository --entity ~.domain.Claim
 service type --interface ~.service.ClaimService --entity ~.domain.Claim
 json all
-help
 web mvc json setup
 web mvc json all
