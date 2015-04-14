@@ -15,12 +15,32 @@
 	<name>claims-estimator-mvc</name>
 
 	<properties>
-		<jacoco.class.coverage>0.97</jacoco.class.coverage>
-		<jacoco.method.coverage>0.96</jacoco.method.coverage>
-		<jacoco.line.coverage>0.94</jacoco.line.coverage>
+		<jacoco.class.coverage>0.17</jacoco.class.coverage>
+		<jacoco.method.coverage>0.16</jacoco.method.coverage>
+		<jacoco.line.coverage>0.14</jacoco.line.coverage>
 	</properties>
 
 	<dependencies>
+
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-mongodb</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>spring-beans</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>spring-expression</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -35,6 +55,12 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<dependency>
@@ -60,35 +86,35 @@
 	</dependencies>
 
 	<build>
-<!-- 	    <resources> -->
-<!--       <resource> -->
-<!--       <directory>src/main/resources</directory> -->
-<!--         <excludes> -->
-<!--           <exclude>bootstrap/fonts/**</exclude> -->
-<!--         </excludes> -->
-<!--         <includes> -->
-<!--         	<include>bootstrap/dist/**</include> -->
-<!--         </includes> -->
-<!--       </resource> -->
-<!--     </resources> -->
+		<!-- <resources> -->
+		<!-- <resource> -->
+		<!-- <directory>src/main/resources</directory> -->
+		<!-- <excludes> -->
+		<!-- <exclude>bootstrap/fonts/**</exclude> -->
+		<!-- </excludes> -->
+		<!-- <includes> -->
+		<!-- <include>bootstrap/dist/**</include> -->
+		<!-- </includes> -->
+		<!-- </resource> -->
+		<!-- </resources> -->
 		<plugins>
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 			</plugin>
-			      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>2.6</version>
-        <configuration>
-          <webResources>
-            <resource>
-              <!-- this is relative to the pom.xml directory -->
-              <directory>src/main/web-resources/styles-npm/dist/</directory>
-            </resource>
-          </webResources>
-        </configuration>
-      </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<webResources>
+						<resource>
+							<!-- this is relative to the pom.xml directory -->
+							<directory>src/main/web-resources/styles-npm/dist/</directory>
+						</resource>
+					</webResources>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
