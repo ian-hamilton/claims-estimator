@@ -5,7 +5,7 @@
 
 	<groupId>com.inertia.solutions.claims</groupId>
 	<artifactId>claims-estimator</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>${project.version}</version>
 	<packaging>pom</packaging>
 
 	<name>claims-estimator</name>
@@ -17,6 +17,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.version>1.0-SNAPSHOT</project.version>
 
 		<java.version>1.7</java.version>
 		<maven.compile.version>3.1</maven.compile.version>
@@ -71,6 +72,13 @@
 
 	<dependencyManagement>
 		<dependencies>
+			<!-- Inter-project Dependencies -->
+			<dependency>
+				<groupId>com.inertia.solutions.claims.service</groupId>
+				<artifactId>claims-estimator-service</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
 			<!-- Spring Depenedencies -->
 			<dependency>
 				<groupId>org.springframework</groupId>

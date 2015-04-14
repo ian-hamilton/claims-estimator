@@ -11,7 +11,6 @@
 	<groupId>com.inertia.solutions.claims.mvc</groupId>
 	<artifactId>claims-estimator-mvc</artifactId>
 	<packaging>war</packaging>
-
 	<name>claims-estimator-mvc</name>
 
 	<properties>
@@ -21,6 +20,12 @@
 	</properties>
 
 	<dependencies>
+
+		<dependency>
+			<groupId>com.inertia.solutions.claims.service</groupId>
+			<artifactId>claims-estimator-service</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -60,35 +65,35 @@
 	</dependencies>
 
 	<build>
-<!-- 	    <resources> -->
-<!--       <resource> -->
-<!--       <directory>src/main/resources</directory> -->
-<!--         <excludes> -->
-<!--           <exclude>bootstrap/fonts/**</exclude> -->
-<!--         </excludes> -->
-<!--         <includes> -->
-<!--         	<include>bootstrap/dist/**</include> -->
-<!--         </includes> -->
-<!--       </resource> -->
-<!--     </resources> -->
+		<!-- <resources> -->
+		<!-- <resource> -->
+		<!-- <directory>src/main/resources</directory> -->
+		<!-- <excludes> -->
+		<!-- <exclude>bootstrap/fonts/**</exclude> -->
+		<!-- </excludes> -->
+		<!-- <includes> -->
+		<!-- <include>bootstrap/dist/**</include> -->
+		<!-- </includes> -->
+		<!-- </resource> -->
+		<!-- </resources> -->
 		<plugins>
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 			</plugin>
-			      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>2.6</version>
-        <configuration>
-          <webResources>
-            <resource>
-              <!-- this is relative to the pom.xml directory -->
-              <directory>src/main/web-resources/styles-npm/dist/</directory>
-            </resource>
-          </webResources>
-        </configuration>
-      </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<webResources>
+						<resource>
+							<!-- this is relative to the pom.xml directory -->
+							<directory>src/main/web-resources/styles-npm/dist/</directory>
+						</resource>
+					</webResources>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 

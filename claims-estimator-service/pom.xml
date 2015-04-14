@@ -10,8 +10,7 @@
 	
     <groupId>com.inertia.solutions.claims.service</groupId>
     <artifactId>claims-estimator-service</artifactId>
-    <packaging>war</packaging>
-    <version>0.1.0.BUILD-SNAPSHOT</version>
+    <packaging>jar</packaging>
     <name>claims-estimator-service</name>
 	
         <!-- General dependencies for standard applications -->
