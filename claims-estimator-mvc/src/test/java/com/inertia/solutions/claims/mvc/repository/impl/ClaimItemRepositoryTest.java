@@ -6,7 +6,9 @@ package com.inertia.solutions.claims.mvc.repository.impl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
@@ -19,9 +21,11 @@ import com.inertia.solutions.claims.mvc.domain.repository.ClaimItemRepository;
  *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes=SpringConfiguration.class, loader=AnnotationConfigContextLoader.class)
+@TestPropertySource("classpath:database.test.properties")
+@ContextConfiguration(classes={SpringConfiguration.class}, loader=AnnotationConfigContextLoader.class)
+@Profile("integration")
 public class ClaimItemRepositoryTest {
-
+	
 	@Autowired
 	ClaimItemRepository repoUnderTest;
 	
@@ -32,7 +36,12 @@ public class ClaimItemRepositoryTest {
 		item.setClaimItemDesc("Test Desc");
 		item.setClaimItemName("Test Name");
 		
+		try {
 		repoUnderTest.save(item);
+		
+		} finally {
+			repoUnderTest.delete(item);
+		}
 		
 	}
 	

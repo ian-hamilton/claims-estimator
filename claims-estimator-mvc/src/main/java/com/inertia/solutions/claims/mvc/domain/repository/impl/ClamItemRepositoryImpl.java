@@ -75,8 +75,7 @@ public class ClamItemRepositoryImpl implements ClaimItemRepository{
 
 	@Override
 	public void delete(ClaimItem arg0) {
-		// TODO Auto-generated method stub
-		
+		mongoTemplate.remove(arg0);
 	}
 
 	@Override
