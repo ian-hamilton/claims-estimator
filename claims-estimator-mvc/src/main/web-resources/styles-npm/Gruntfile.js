@@ -114,7 +114,8 @@ module.exports = function (grunt) {
           'src/bootstrap/js/popover.js',
           'src/bootstrap/js/scrollspy.js',
           'src/bootstrap/js/tab.js',
-          'src/bootstrap/js/affix.js'
+          'src/bootstrap/js/affix.js',
+		  'src/angular/js/angular.js'
         ],
         dest: 'dist/js/<%= pkg.name %>.js'
       }
