@@ -20,16 +20,16 @@ import com.inertia.solutions.claims.mvc.domain.repository.ClaimItemRepository;
  * @author ihamilto
  *
  */
-//@RunWith(SpringJUnit4ClassRunner.class)
-//@TestPropertySource("classpath:database.test.properties")
-//@ContextConfiguration(classes={SpringConfiguration.class}, loader=AnnotationConfigContextLoader.class)
-//@ActiveProfiles("integration")
+@RunWith(SpringJUnit4ClassRunner.class)
+@TestPropertySource("classpath:database.test.properties")
+@ContextConfiguration(classes={SpringConfiguration.class}, loader=AnnotationConfigContextLoader.class)
+@ActiveProfiles("integration")
 public class ClaimItemRepositoryTest {
 	
 	@Autowired
 	ClaimItemRepository repoUnderTest;
 	
-//	@Test
+	@Test
 	public void testSaveClaimItem() {
 		ClaimItem item = new ClaimItem();
 		item.setClaimItemAmount(new Double(10));
