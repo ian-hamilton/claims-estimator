@@ -6,7 +6,7 @@ package com.inertia.solutions.claims.mvc.repository.impl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Profile;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -20,16 +20,16 @@ import com.inertia.solutions.claims.mvc.domain.repository.ClaimItemRepository;
  * @author ihamilto
  *
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@TestPropertySource("classpath:database.test.properties")
-@ContextConfiguration(classes={SpringConfiguration.class}, loader=AnnotationConfigContextLoader.class)
-@Profile("integration")
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@TestPropertySource("classpath:database.test.properties")
+//@ContextConfiguration(classes={SpringConfiguration.class}, loader=AnnotationConfigContextLoader.class)
+//@ActiveProfiles("integration")
 public class ClaimItemRepositoryTest {
 	
 	@Autowired
 	ClaimItemRepository repoUnderTest;
 	
-	@Test
+//	@Test
 	public void testSaveClaimItem() {
 		ClaimItem item = new ClaimItem();
 		item.setClaimItemAmount(new Double(10));

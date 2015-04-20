@@ -33,8 +33,7 @@ public class ClamItemRepositoryImpl implements ClaimItemRepository{
 
 	@Override
 	public List<ClaimItem> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return mongoTemplate.findAll(ClaimItem.class);
 	}
 
 	@Override

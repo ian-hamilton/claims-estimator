@@ -18,7 +18,7 @@ import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
 
 @Configuration
-@PropertySource(value="classpath:databases.properties", ignoreResourceNotFound=true)
+@PropertySource(value="classpath:database.properties")
 public class DomainConfiguration extends AbstractMongoConfiguration {
 
 	@Autowired

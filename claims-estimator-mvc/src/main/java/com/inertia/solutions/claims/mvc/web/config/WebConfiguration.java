@@ -9,7 +9,8 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = {"com.inertia.solutions.claims.mvc.web.controller"})
+@ComponentScan(basePackages = {"com.inertia.solutions.claims.mvc.web.controller", 
+		"com.inertia.solutions.claims.mvc.rest.controller"})
 public class WebConfiguration {
 	
 	@Bean
