@@ -118,10 +118,7 @@ module.exports = function (grunt) {
 		  'src/angular/js/angular.js',
 		  'src/angular/js/angular-resource.js',
 		  'src/angular/js/angular-route.js',
-		  'src/angular/js/ng-grid.js',
-		  'src/angular/js/ng-grid-flexible-height.js',
-		  'src/angular/js/ng-grid-layout.js',
-		  'src/angular/js/ng-grid-reorderable.js',
+		  'src/angular-ui/dist/release/ui-grid.css',
 		  'src/claims-mixin/js/claim-maintenance.js'
         ],
         dest: 'dist/js/<%= pkg.name %>.js'
