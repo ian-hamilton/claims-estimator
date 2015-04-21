@@ -115,7 +115,9 @@ module.exports = function (grunt) {
           'src/bootstrap/js/scrollspy.js',
           'src/bootstrap/js/tab.js',
           'src/bootstrap/js/affix.js',
-		  'src/angular/js/angular.js'
+		  'src/angular/js/angular.js',
+		  'src/angular/js/angular-resource.js',
+		  'src/angular/js/angular-route.js'
         ],
         dest: 'dist/js/<%= pkg.name %>.js'
       }
