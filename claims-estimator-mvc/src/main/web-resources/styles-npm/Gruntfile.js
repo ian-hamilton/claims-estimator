@@ -117,7 +117,8 @@ module.exports = function (grunt) {
           'src/bootstrap/js/affix.js',
 		  'src/angular/js/angular.js',
 		  'src/angular/js/angular-resource.js',
-		  'src/angular/js/angular-route.js'
+		  'src/angular/js/angular-route.js',
+		  'src/claims-mixin/js/claim-maintenance.js'
         ],
         dest: 'dist/js/<%= pkg.name %>.js'
       }
