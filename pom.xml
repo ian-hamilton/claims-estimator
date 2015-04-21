@@ -32,6 +32,7 @@
 		<commons-dbcp-version>1.4</commons-dbcp-version>
 		<postgres-version>9.2-1003-jdbc4</postgres-version>
 		<jstl-version>1.2</jstl-version>
+		<javax.version>3.1.0</javax.version>
 		<jackson.version>2.3.3</jackson.version>
 
 		<junit-version>4.11</junit-version>
@@ -91,6 +92,13 @@
 				<groupId>javax.servlet</groupId>
 				<artifactId>jstl</artifactId>
 				<version>${jstl-version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>${javax.version}</version>
+				<scope>provided</scope>
 			</dependency>
 
 			<dependency>
