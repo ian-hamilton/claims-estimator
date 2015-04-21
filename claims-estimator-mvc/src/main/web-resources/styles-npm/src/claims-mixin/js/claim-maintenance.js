@@ -21,6 +21,19 @@ claimMaintenanceControllers.controller('ClaimItemMaintenanceController', [
 		'$scope', 'ClaimItemsAll', function($scope, ClaimItemsAll) {
 			$scope.claimItems = ClaimItemsAll.query();
 			$scope.orderProp = 'claimItemName';
+			$scope.totalServerItems = $scope.claimItems.length;
+			
+			    $scope.gridOptions = { 
+			        data: 'claimItems',
+			        columnDefs: [{field:'claimItemName', displayName:'Item Name'}, 
+			                     {field:'claimItemAmount', displayName:'Item Cost'},
+			                     {field:'claimItemDesc', displayName:'Item Description'}],
+			        showGroupPanel: false,
+			        jqueryUITheme: true,
+			        enablePaging: false,
+			        showFooter: true,
+			        plugins: [new ngGridFlexibleHeightPlugin({ maxHeight : 1000})]
+			    };
 		}]);
 
-angular.module('claimMaintenance', ['claimMaintenanceControllers', 'claimItemServices']);
+angular.module('claimMaintenanceApp', ['claimMaintenanceControllers', 'claimItemServices', 'ngGrid']);

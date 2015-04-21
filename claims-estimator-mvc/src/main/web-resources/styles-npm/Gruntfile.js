@@ -118,6 +118,10 @@ module.exports = function (grunt) {
 		  'src/angular/js/angular.js',
 		  'src/angular/js/angular-resource.js',
 		  'src/angular/js/angular-route.js',
+		  'src/angular/js/ng-grid.js',
+		  'src/angular/js/ng-grid-flexible-height.js',
+		  'src/angular/js/ng-grid-layout.js',
+		  'src/angular/js/ng-grid-reorderable.js',
 		  'src/claims-mixin/js/claim-maintenance.js'
         ],
         dest: 'dist/js/<%= pkg.name %>.js'
@@ -126,14 +130,15 @@ module.exports = function (grunt) {
 
     uglify: {
       options: {
-        preserveComments: 'some'
+        preserveComments: 'some',
+		beautify: true
       },
       core: {
         src: '<%= concat.bootstrap.dest %>',
         dest: 'dist/js/<%= pkg.name %>.min.js'
       }
     },
-
+	
     qunit: {
       options: {
         inject: 'src/bootstrap/js/tests/unit/phantom.js'
