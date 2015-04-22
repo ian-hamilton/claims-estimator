@@ -15,5 +15,6 @@ pom.xml~
 bin/
 .metadata
 
-#bootstrap
+#npm
 node_modules/
+npm-debug.log

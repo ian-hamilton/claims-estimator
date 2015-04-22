@@ -27,4 +27,9 @@ public class ClaimItemServiceImpl implements ClaimItemService {
 		return claimItemRepository.findAll();
 	}
 
+	@Override
+	public ClaimItem saveClaimItem(ClaimItem claimItem) {
+		return claimItemRepository.save(claimItem);
+	}
+
 }

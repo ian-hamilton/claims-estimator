@@ -14,5 +14,7 @@ import com.inertia.solutions.claims.mvc.domain.entity.ClaimItem;
 public interface ClaimItemService {
 	
 	public List<ClaimItem> findAll();
+	
+	public ClaimItem saveClaimItem(ClaimItem claimItem);
 
 }

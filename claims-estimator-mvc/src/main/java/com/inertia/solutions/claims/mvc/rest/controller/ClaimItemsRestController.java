@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -31,12 +32,18 @@ public class ClaimItemsRestController {
 	@Autowired
 	ClaimItemService claimItemService;
 	
-	
     @RequestMapping(method = RequestMethod.GET, headers = "Accept=application/json")
     @ResponseBody
     @ResponseStatus(value = HttpStatus.OK)
 	public Collection<ClaimItem> getAll() {
     	return claimItemService.findAll();
+    }
+    
+    @RequestMapping(method = RequestMethod.POST, headers = "Accept=application/json")
+    @ResponseBody
+    @ResponseStatus(value = HttpStatus.OK)
+	public ClaimItem put(@RequestBody ClaimItem claimItem) {
+    	return claimItemService.saveClaimItem(claimItem);
     }
 	
     @ExceptionHandler(Exception.class)

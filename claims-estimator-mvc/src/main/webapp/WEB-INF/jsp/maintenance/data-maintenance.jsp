@@ -16,18 +16,20 @@
 </div>
 
 <div class="container" ng-app="claimMaintenanceApp">
-	<div class="row">
+	<div class="row" ng-controller="ClaimItemMaintenanceController">
 		.
-
 		<div class="col-md-8 column">
-
-			<div ng-controller="ClaimItemMaintenanceController">
-
 				<div class="gridStyle" ng-grid="gridOptions"></div>
-
-			</div>
 		</div>
-		<div class="col-md-4"></div>
+		<div class="col-md-4">
+			<form novalidate class="simple-form">
+				Item Name: <input type="text" ng-model="claimItem.claimItemName" /><br />
+				Item Cost: <input type="text" ng-model="claimItem.claimItemAmount" /><br />
+				Item Desc: <input type="text" ng-model="claimItem.claimItemDesc" /><br />
+				<input type="button" ng-click="reset()" value="Reset" /> <input
+					type="submit" ng-click="update(claimItem)" value="Save" />
+			</form>
+		</div>
 	</div>
 </div>
 
