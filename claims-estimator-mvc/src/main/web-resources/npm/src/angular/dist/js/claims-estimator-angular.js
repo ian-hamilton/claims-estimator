@@ -28,33 +28,32 @@ claimMaintenanceControllers.controller('ClaimItemMaintenanceController', [
 			$scope.claimItems = ClaimItems.query();
 			$scope.orderProp = 'claimItemName';
 			$scope.totalServerItems = $scope.claimItems.length;
-			$scope.master = {};
 			
 			    $scope.gridOptions = { 
 			        data: 'claimItems',
-			        columnDefs: [{field:'claimItemName', displayName:'Item Name'}, 
-			                     {field:'claimItemAmount', displayName:'Item Cost'},
-			                     {field:'claimItemDesc', displayName:'Item Description'}],
+			        columnDefs: [{field:'claimItemName', displayName:'Item Name', enableCellEdit: true}, 
+			                     {field:'claimItemAmount', displayName:'Item Cost', enableCellEdit: true},
+			                     {field:'claimItemDesc', displayName:'Item Description', enableCellEdit: true}],
 			        showGroupPanel: false,
 			        jqueryUITheme: true,
 			        enablePaging: false,
 			        showFooter: true,
+			        enableCellSelection: true,
+			        enableRowSelection: true,
+			        enableCellEdit: true,
 			        plugins: [new ngGridFlexibleHeightPlugin({ maxHeight : 1000})]
 			    };
 			    
-			 $scope.reset = function() {
-			     $scope.claimItem = angular.copy($scope.master);
+			 $scope.addRow = function() {
+			      $scope.claimItems.push({claimItemName: 'Empty', claimItemAmount: 0});
 			 };
-			 
-			 $scope.update = function(claimItem) {
-				 ClaimItems.save({id:claimItem.id}, claimItem, function(data) {
-					 $scope.claimItems = ClaimItems.query();
-					 $scope.reset();
+			 		 
+			 $scope.saveAllClaimItems = function() {
+				 angular.forEach($scope.claimItems, function(value, index){
+					 ClaimItems.save({id:value.id}, value);
 				 });
-				
 			 };
-			  
-			 $scope.reset();
+
 		}]);
 
 angular.module('claimMaintenanceApp', ['claimMaintenanceControllers', 'claimItemServices', 'ngGrid']);

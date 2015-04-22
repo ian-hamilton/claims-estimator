@@ -20,16 +20,10 @@
 		.
 		<div class="col-md-8 column">
 				<div class="gridStyle" ng-grid="gridOptions"></div>
+				<button ng-click="addRow()">Add Row</button>
+				<button ng-click="saveAllClaimItems()">Save All</button>
 		</div>
-		<div class="col-md-4">
-			<form novalidate class="simple-form">
-				Item Name: <input type="text" ng-model="claimItem.claimItemName" /><br />
-				Item Cost: <input type="text" ng-model="claimItem.claimItemAmount" /><br />
-				Item Desc: <input type="text" ng-model="claimItem.claimItemDesc" /><br />
-				<input type="button" ng-click="reset()" value="Reset" /> <input
-					type="submit" ng-click="update(claimItem)" value="Save" />
-			</form>
-		</div>
+		<div class="col-md-4"></div>
 	</div>
 </div>
 
