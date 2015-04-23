@@ -53,20 +53,55 @@ claimMaintenanceControllers.controller('ClaimItemMaintenanceController', [
 			 };
 			 		 
 			 $scope.saveAllClaimItems = function() {
+				 $.blockUI({ message: '<h1><img src="images/busy.gif" /> Just a moment...</h1>' }); 
 				 angular.forEach($scope.claimItems, function(value, index){
 					 ClaimItems.save({id:value.id}, value);
 				 });
+
+				 //hack for visual
+				 setTimeout(function(){
+					 $.unblockUI(); 
+				  }, 2000);
 			 };
 			 
 			 $scope.removeRow = function() {
+				 $.blockUI({ message: '<h1><img src="busy.gif" /> Just a moment...</h1>' }); 
 				  var index = this.row.rowIndex;
 				  var value = $scope.claimItems[index];
-                  ClaimItems.remove({id:value.id}, value, function(){
-                	  $scope.gridOptions.selectItem(index, false);
-                      $scope.myData.splice(index, 1);
+                  ClaimItems.remove({id:value.id}, value, function(index){
+                	  $scope.claimItems = ClaimItems.query();
                   });
+                  
+                  //hack for visual
+ 				 setTimeout(function(){
+ 					 $.unblockUI(); 
+ 				  }, 1000);
 			 };
 
 		}]);
 
 angular.module('claimMaintenanceApp', ['claimMaintenanceControllers', 'claimItemServices', 'ngGrid']);
+
+/**
+ * @license Inertia v1.0
+ * 
+ * Inertia, Inc. License: MIT
+ */ 
+
+    // unblock when ajax activity stops
+    $(document).ajaxStop($.unblockUI); 
+ 
+    function test() { 
+        $.ajax({ url: 'wait.php', cache: false }); 
+    } 
+
+    $(document).ready(function() { 
+    	
+ 
+    $(document).ready(function() { 
+        $('#saveAllItems2').click(function() { 
+            $.blockUI({ message: '<h1><img src="busy.gif" /> Just a moment...</h1>' }); 
+        }); 
+    });
+    
+    });

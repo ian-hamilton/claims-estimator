@@ -15,13 +15,15 @@
 	</div>
 </div>
 
-<div class="container" ng-app="claimMaintenanceApp">
-	<div class="row" ng-controller="ClaimItemMaintenanceController">
+
+<div class="row" ng-app="claimMaintenanceApp">
+	<div class="container" ng-controller="ClaimItemMaintenanceController">
 		.
 		<div class="col-md-8 column">
-				<div class="gridStyle" ng-grid="gridOptions"></div>
-				<button ng-click="addRow()">Add Row</button>
-				<button ng-click="saveAllClaimItems()">Save All</button>
+			<button ng-click="addRow()">Add Row</button>
+			<button id="saveAllItems" ng-click="saveAllClaimItems()">Save All</button>
+			<div class="gridStyle" ng-grid="gridOptions"></div>
+
 		</div>
 		<div class="col-md-4"></div>
 	</div>

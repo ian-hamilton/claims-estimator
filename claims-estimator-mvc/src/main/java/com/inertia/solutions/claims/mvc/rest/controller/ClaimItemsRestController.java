@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,10 +53,10 @@ public class ClaimItemsRestController {
     @RequestMapping(method = RequestMethod.DELETE, headers = ACCEPT_APPLICATION_JSON)
     @ResponseBody
     @ResponseStatus(value = HttpStatus.OK)
-	public void delete(@RequestParam String id) {
-    	log.debug("Parm ->" + id);
-    	claimItemService.deleteClaimItem(id);
-    }
+	public void delete(@RequestParam(required = false) String id) {
+    	if(!StringUtils.isEmpty(id)) 
+    		claimItemService.deleteClaimItem(id);
+    }   	
 	
     @ExceptionHandler(Exception.class)
 	@ResponseStatus(value = HttpStatus.BAD_REQUEST)

@@ -18,11 +18,12 @@ module.exports = function(grunt) {
 		css: {
 			 files : [
 				{expand: true, flatten: true, cwd: 'src/bootstrap/dist/css/', src: '**', dest: 'dist/css/', filter: 'isFile'},
+				{expand: true, flatten: true, cwd: 'src/angular/dist/css/', src: '**', dest: 'dist/css/', filter: 'isFile'},
 			 ]
 		},
 		fonts: {
 			 files : [
-				{expand: true, flatten: true, cwd: 'src/bootstrap/dist/fonts/', src: '**', dest: 'dist/fonts/', filter: 'isFile'},
+				{expand: true, flatten: true, cwd: 'src/bootstrap/dist/fonts/', src: '**', dest: 'dist/fonts/', filter: 'isFile'}
 			 ]
 		}
 	  }

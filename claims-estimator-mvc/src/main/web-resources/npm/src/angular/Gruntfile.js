@@ -23,7 +23,8 @@ module.exports = function(grunt) {
       },
       core: {
         src: [
-          'js/claim-maintenance.js'
+          'js/claim-maintenance.js',
+          'js/util.js'
         ],
         dest: 'dist/js/<%= pkg.name %>.js'
       }
@@ -37,14 +38,40 @@ module.exports = function(grunt) {
         src: 'dist/css/*.css'
       }
     },
+    less: {
+        compileCore: {
+          options: {
+            strictMath: true,
+            sourceMap: true,
+            outputSourceFiles: true,
+            sourceMapURL: '<%= pkg.name %>.css.map',
+            sourceMapFilename: 'dist/css/<%= pkg.name %>.css.map'
+          },
+          src: 'less/root.less',
+          dest: 'dist/css/<%= pkg.name %>.css'
+        }
+      },
+      cssmin: {
+          options: {
+            compatibility: 'ie8',
+            keepSpecialComments: '*',
+            advanced: false
+          },
+          minifyCore: {
+            src: 'dist/css/<%= pkg.name %>.css',
+            dest: 'dist/css/<%= pkg.name %>.min.css'
+          }
+        }
   });
 
   // Load the plugin that provides the "uglify" task.
   require('load-grunt-tasks')(grunt, { scope: 'devDependencies' });
 
   // Full distribution task.
-  grunt.registerTask('dist', ['clean:dist', 'dist-js']);
+  grunt.registerTask('dist', ['clean:dist', 'dist-js', 'dist-less']);
   // JS distribution task.
   grunt.registerTask('dist-js', ['concat', 'uglify:core']);
+  //Less distribution task
+  grunt.registerTask('dist-less', ['less:compileCore', 'cssmin:minifyCore']);
 
 };
