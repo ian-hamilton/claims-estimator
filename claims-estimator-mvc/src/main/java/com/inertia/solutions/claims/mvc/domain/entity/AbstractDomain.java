@@ -18,10 +18,6 @@ public abstract class AbstractDomain {
 		return id;
 	}
 
-	public void setId(String id) {
-		this.id = id;
-	}
-
 	@Override
 	public String toString() {
 		return "AbstractDomain [id=" + id + "]";

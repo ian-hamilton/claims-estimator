@@ -11,9 +11,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * @author ihamilto
  *
  */
-@Document
+@Document(collection = "claimItem")
 public class ClaimItem extends AbstractDomain {
-
+	
 	/**
      */
 	@NotNull
@@ -70,9 +70,7 @@ public class ClaimItem extends AbstractDomain {
 	public String toString() {
 		return "ClaimItem [claimItemName=" + claimItemName + ", ClaimItemDesc="
 				+ ClaimItemDesc + ", claimItemAmount=" + claimItemAmount
-				+ ", getId()=" + getId() + ", toString()=" + super.toString()
-				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
-				+ "]";
+				+ ", getId()=" + getId() + "]";
 	}
 
 }

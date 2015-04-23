@@ -6,7 +6,6 @@ package com.inertia.solutions.claims.mvc.repository.impl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -14,7 +13,7 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
 import com.inertia.solutions.claims.mvc.app.config.SpringConfiguration;
 import com.inertia.solutions.claims.mvc.domain.entity.ClaimItem;
-import com.inertia.solutions.claims.mvc.domain.repository.ClaimItemRepository;
+import com.inertia.solutions.claims.mvc.domain.repository.ClaimItemRepositoryImpl;
 
 /**
  * @author ihamilto
@@ -23,11 +22,10 @@ import com.inertia.solutions.claims.mvc.domain.repository.ClaimItemRepository;
 @RunWith(SpringJUnit4ClassRunner.class)
 @TestPropertySource("classpath:database.test.properties")
 @ContextConfiguration(classes={SpringConfiguration.class}, loader=AnnotationConfigContextLoader.class)
-@ActiveProfiles("integration")
 public class ClaimItemRepositoryTest {
 	
 	@Autowired
-	ClaimItemRepository repoUnderTest;
+	ClaimItemRepositoryImpl repoUnderTest;
 	
 	@Test
 	public void testSaveClaimItem() {
