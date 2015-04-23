@@ -5,8 +5,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-/*
+/**
  * http://localhost:8080/claims-estimator-mvc/home
+ * 
+ * Basic Web Controller (Html)
  */
 
 @Controller

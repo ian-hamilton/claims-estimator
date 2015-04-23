@@ -19,12 +19,24 @@ import com.mongodb.MongoClient;
 import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
 
+
 /**
- * 
  * This class is a basic Spring IOC Container config
  * which does a @Component @Services scan on the base package name,
  * and also allows the AspectJ Style proxy generation.
+ * 
+ * This also enables mongo repository context loading. This is interesting, because 
+ * it does as scan for any implemented (extended) "interfaces". If a class implementation
+ * is scanned is does NOT wire that into the context.
+ * 
+ * This does a component scan for the domain directory
+ * 
+ * Loads the database properties file, can be "diretied" during unit testing.
  *
+ * @author Ian Hamilton
+ * @version 1.0
+ * @since 1.0
+ * 
  */
 @Configuration
 @EnableMongoRepositories(basePackages="com.inertia.solutions.claims.mvc.domain.repository")
@@ -32,9 +44,13 @@ import com.mongodb.ServerAddress;
 @PropertySource(value="classpath:database.properties")
 public class SpringConfiguration extends AbstractMongoConfiguration  {
 
+	/** The env. */
 	@Autowired
 	private Environment env;
 	
+	/* (non-Javadoc)
+	 * @see org.springframework.data.mongodb.config.AbstractMongoConfiguration#mongo()
+	 */
 	@Override
 	@Bean
 	public MongoClient mongo() throws Exception {
@@ -44,19 +60,30 @@ public class SpringConfiguration extends AbstractMongoConfiguration  {
 		return new MongoClient(new ServerAddress(env.getProperty("mongo.host"), new Integer(env.getProperty("mongo.port"))), credsList);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.springframework.data.mongodb.config.AbstractMongoConfiguration#mongoDbFactory()
+	 */
+	@Override
 	@Bean
 	public MongoDbFactory mongoDbFactory() throws Exception {
 		return new SimpleMongoDbFactory(mongo(), env.getProperty("mongo.database"));
 	}
 
+	/* (non-Javadoc)
+	 * @see org.springframework.data.mongodb.config.AbstractMongoConfiguration#mongoTemplate()
+	 */
+	@Override
 	@Bean
 	public MongoTemplate mongoTemplate() throws Exception {
 		return new MongoTemplate(mongoDbFactory());
 	}
 
+	/* (non-Javadoc)
+	 * @see org.springframework.data.mongodb.config.AbstractMongoConfiguration#getDatabaseName()
+	 */
 	@Override
 	protected String getDatabaseName() {
-		return null;
+		return env.getProperty("mongo.database");
 	}
 	
 }

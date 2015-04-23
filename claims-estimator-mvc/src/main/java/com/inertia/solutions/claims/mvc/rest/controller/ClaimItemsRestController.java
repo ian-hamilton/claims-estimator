@@ -22,16 +22,23 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import com.inertia.solutions.claims.mvc.domain.entity.ClaimItem;
 import com.inertia.solutions.claims.mvc.domain.service.ClaimItemService;
 
+
 /**
- * @author ihamilto
+ * Using JRE 1.7.0_75
+ * 
+ * The Class ClaimItemsRestController which is a basic controller for
+ * the main RESTful HTTP types. Except "PUT" since angular really uses
+ * either POST or PUT for update transactions.
  *
+ * @author Ian Hamilton
+ * @version 1.0
+ * @since 1.0
  */
 @Controller
 @RequestMapping("/service/claimitems")
 public class ClaimItemsRestController {
-	
 	private static final String ACCEPT_APPLICATION_JSON = "Accept=application/json";
-	private static final Logger log = LoggerFactory.getLogger(ClaimItemsRestController.class);
+
 	
 	@Autowired
 	ClaimItemService claimItemService;
@@ -43,6 +50,7 @@ public class ClaimItemsRestController {
     	return claimItemService.findAllClaimItems();
     }
     
+
     @RequestMapping(method = RequestMethod.POST, headers = ACCEPT_APPLICATION_JSON)
     @ResponseBody
     @ResponseStatus(value = HttpStatus.OK)
@@ -50,6 +58,7 @@ public class ClaimItemsRestController {
     	return claimItemService.saveClaimItem(claimItem);
     }
     
+
     @RequestMapping(method = RequestMethod.DELETE, headers = ACCEPT_APPLICATION_JSON)
     @ResponseBody
     @ResponseStatus(value = HttpStatus.OK)
@@ -58,10 +67,10 @@ public class ClaimItemsRestController {
     		claimItemService.deleteClaimItem(id);
     }   	
 	
+
     @ExceptionHandler(Exception.class)
 	@ResponseStatus(value = HttpStatus.BAD_REQUEST)
 	public String handleException(Exception ex) {
-		log.error("Exception during controller handling", ex);
 		return null;
 	}
 

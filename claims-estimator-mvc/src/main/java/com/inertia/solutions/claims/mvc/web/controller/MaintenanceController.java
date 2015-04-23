@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * @author ihamilto
+ * Basic Web Controller (Html)
+ * 
+ * @author Ian Hamilton
  *
  */
 
