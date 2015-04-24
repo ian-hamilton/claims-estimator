@@ -19,10 +19,11 @@ import com.inertia.solutions.claims.mvc.domain.repository.ClaimItemRepositoryImp
  * @author ihamilto
  *
  */
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @TestPropertySource("classpath:database.test.properties")
 @ContextConfiguration(classes={SpringConfiguration.class}, loader=AnnotationConfigContextLoader.class)
-public class ClaimItemRepositoryTest {
+public class ClaimItemRepositoryIT {
 	
 	@Autowired
 	ClaimItemRepositoryImpl repoUnderTest;

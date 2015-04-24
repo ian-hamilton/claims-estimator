@@ -250,14 +250,33 @@
 					<version>${pittest-version}</version>
 				</plugin>
 				<plugin>
+					<!-- Run integration tests (*IT) Compute integration test coverage for 
+						Sonar BEWARE: Sonar doesn't run the verify phase, it has to be forced by 
+						setting -Dsonar.phase=verify -->
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-failsafe-plugin</artifactId>
+					<executions>
+						<execution>
+							<id>run-tests</id>
+							<phase>integration-test</phase>
+							<goals>
+								<goal>integration-test</goal>
+								<goal>verify</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
+					</configuration>
+				</plugin>
+				<plugin>
 					<groupId>org.jacoco</groupId>
 					<artifactId>jacoco-maven-plugin</artifactId>
 					<version>${jacoco-version}</version>
 					<configuration>
 						<excludes>
-							<exclude>**/Launcher*</exclude>
-							<exclude>**/SpringConfiguration*</exclude>
-							<exclude>**/WebConfiguration*</exclude>
+							<exclude>**/config/*</exclude>
+							<exclude>**/aspect/impl/*</exclude>
 						</excludes>
 						<rules>
 							<rule>
