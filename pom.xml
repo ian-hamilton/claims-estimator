@@ -40,6 +40,7 @@
 		<jacoco-version>0.6.3.201306030806</jacoco-version>
 		<pittest-version>0.31</pittest-version>
 		<testutils.version>0.1.3</testutils.version>
+		<springockito.version>1.0.9</springockito.version>
 	</properties>
 
 	<dependencyManagement>
@@ -200,6 +201,18 @@
 				<artifactId>testUtils</artifactId>
 				<version>${testutils.version}</version>
 				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.kubek2k</groupId>
+				<artifactId>springockito</artifactId>
+				<version>${springockito.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.kubek2k</groupId>
+				<artifactId>springockito-annotations</artifactId>
+				<version>${springockito.version}</version>
 			</dependency>
 
 		</dependencies>

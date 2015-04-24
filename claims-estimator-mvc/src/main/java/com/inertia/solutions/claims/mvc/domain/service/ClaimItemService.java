@@ -48,11 +48,4 @@ public interface ClaimItemService {
 	 */
 	public void deleteClaimItem(String id);
 
-	/**
-	 * Find claim item by id.
-	 *
-	 * @param id the id
-	 * @return the claim item
-	 */
-	public ClaimItem findClaimItemById(String id);
 }

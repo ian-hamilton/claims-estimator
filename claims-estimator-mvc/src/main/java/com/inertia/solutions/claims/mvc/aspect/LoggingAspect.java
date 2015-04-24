@@ -5,8 +5,6 @@ package com.inertia.solutions.claims.mvc.aspect;
 
 import org.aspectj.lang.JoinPoint;
 
-import com.inertia.solutions.claims.mvc.aspect.impl.FineGrainLogging;
-
 /**
  * Using JRE 1.7.0_75
  * 

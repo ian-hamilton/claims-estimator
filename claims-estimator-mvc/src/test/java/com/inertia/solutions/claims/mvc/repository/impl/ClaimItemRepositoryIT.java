@@ -11,7 +11,7 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
-import com.inertia.solutions.claims.mvc.app.config.SpringConfiguration;
+import com.inertia.solutions.claims.mvc.app.config.SpringApplicationContext;
 import com.inertia.solutions.claims.mvc.domain.entity.ClaimItem;
 import com.inertia.solutions.claims.mvc.domain.repository.ClaimItemRepositoryImpl;
 
@@ -22,7 +22,7 @@ import com.inertia.solutions.claims.mvc.domain.repository.ClaimItemRepositoryImp
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @TestPropertySource("classpath:database.test.properties")
-@ContextConfiguration(classes={SpringConfiguration.class}, loader=AnnotationConfigContextLoader.class)
+@ContextConfiguration(classes={SpringApplicationContext.class}, loader=AnnotationConfigContextLoader.class)
 public class ClaimItemRepositoryIT {
 	
 	@Autowired

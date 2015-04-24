@@ -25,25 +25,23 @@ import com.inertia.solutions.claims.mvc.web.config.WebContext;
 		MockApplicationContext.class })
 @WebAppConfiguration
 @DirtiesContext
-public class HomeControllerTest {
-
+public class MaintenanceControllerTest {
 
 	@Autowired 
 	WebApplicationContext dirtiedWebContext; 
 	
 	MockMvc mockMvc;
-	
+
 	@Before
 	public void setup() {
-		mockMvc = MockMvcBuilders.webAppContextSetup(this.dirtiedWebContext).build();
-	}
-	
-	@Test
-	public void testGet() throws Exception {
-		mockMvc.perform(get("/maintenance"))
-			.andExpect(status().isOk())
-				.andExpect(view().name("maintenance/data-maintenance"))
-					.andExpect(forwardedUrl("/WEB-INF/jsp/maintenance/data-maintenance.jsp"));
+		this.mockMvc = MockMvcBuilders.webAppContextSetup(this.dirtiedWebContext).build();
 	}
 
+	@Test
+	public void testGet() throws Exception {
+		mockMvc.perform(get("/"))
+			.andExpect(status().isOk())
+				.andExpect(view().name("home"))
+					.andExpect(forwardedUrl("/WEB-INF/jsp/home.jsp"));
+	}
 }

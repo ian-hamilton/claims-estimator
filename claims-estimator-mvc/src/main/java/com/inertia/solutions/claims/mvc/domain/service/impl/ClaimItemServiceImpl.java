@@ -16,7 +16,7 @@ import com.inertia.solutions.claims.mvc.domain.service.ClaimItemService;
 /**
  * Using JRE 1.7.0_75
  * 
- * The Class ClaimItemServiceImpl is the implemenation for the basic service 
+ * The Class ClaimItemServiceImpl is the implementation for the basic service 
  * that updates items. Notice the injection of the repository dependency. This is 
  * important since this will provide the abstraction layer between all items, though
  * for this exercise it is thin.
@@ -62,15 +62,6 @@ public class ClaimItemServiceImpl implements ClaimItemService {
 	@Override
 	public void deleteClaimItem(String id) {
 		claimItemRepository.delete(id);		
-	}
-
-	/* (non-Javadoc)
-	 * @see com.inertia.solutions.claims.mvc.domain.service.ClaimItemService#findClaimItemById(java.lang.String)
-	 */
-	@Override
-	public ClaimItem findClaimItemById(String id) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

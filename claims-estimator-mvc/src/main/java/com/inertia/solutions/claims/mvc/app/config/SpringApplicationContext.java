@@ -45,7 +45,7 @@ import com.mongodb.ServerAddress;
 		"com.inertia.solutions.claims.mvc.aspect"})
 @PropertySource(value="classpath:database.properties")
 @EnableAspectJAutoProxy
-public class SpringConfiguration extends AbstractMongoConfiguration  {
+public class SpringApplicationContext extends AbstractMongoConfiguration  {
 
 	@Autowired
 	private Environment env;

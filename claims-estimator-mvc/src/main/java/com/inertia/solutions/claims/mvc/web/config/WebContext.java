@@ -20,7 +20,7 @@ import org.springframework.web.servlet.view.JstlView;
 @EnableWebMvc
 @ComponentScan(basePackages = {"com.inertia.solutions.claims.mvc.web.controller", 
 		"com.inertia.solutions.claims.mvc.rest.controller"})
-public class WebConfiguration {
+public class WebContext {
 	
 	@Bean
 	public InternalResourceViewResolver jspViewResolver() {
