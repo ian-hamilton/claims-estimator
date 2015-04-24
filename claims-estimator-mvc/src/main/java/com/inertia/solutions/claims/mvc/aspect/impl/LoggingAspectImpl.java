@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.slf4j.Logger;
@@ -60,6 +61,7 @@ public class LoggingAspectImpl implements LoggingAspect {
 	 * @see com.inertia.solutions.claims.mvc.aspect.LoggingAspect#logAfterThrowing(org.aspectj.lang.JoinPoint, java.lang.Throwable)
 	 */
 	@Override
+	@AfterThrowing(pointcut = "execution(* com.inertia.solutions.claims.mvc..*(..))", throwing = "e")
 	public void logAfterThrowing(JoinPoint joinPoint, Throwable e) {
 		log.error(String.format("Error thrown during application execution -> %s()", joinPoint.getSignature().getName()), e);		
 	}
@@ -70,22 +72,10 @@ public class LoggingAspectImpl implements LoggingAspect {
 	@Override
 	@Before("@annotation(com.inertia.solutions.claims.mvc.aspect.impl.FineGrainLogging)")
 	@Order(1)
-	public void logBeforeAnnotation(JoinPoint joinPoint, FineGrainLogging annotation) {
+	public void logBeforeAnnotation(JoinPoint joinPoint) {
 		log.info("The annotated method " + joinPoint.getSignature().getName()
 				+ "() begins with " + Arrays.toString(joinPoint.getArgs()));
 			
 	}
 	
-	/* (non-Javadoc)
-	 * @see com.inertia.solutions.claims.mvc.aspect.LoggingAspect#logBeforeAnnotation(org.aspectj.lang.JoinPoint)
-	 */
-	@Override
-	@After("@annotation(com.inertia.solutions.claims.mvc.aspect.impl.FineGrainLogging)")
-	@Order(1)
-	public void logAfterAnnotation(JoinPoint joinPoint, FineGrainLogging annotation) {
-		log.info("The annotated method " + joinPoint.getSignature().getName()
-				+ "() ends with " + Arrays.toString(joinPoint.getArgs()));
-		
-	}
-
 }

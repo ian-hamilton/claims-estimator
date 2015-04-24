@@ -49,13 +49,6 @@ public interface LoggingAspect {
 	 *
 	 * @param joinPoint the join point
 	 */
-	public void logBeforeAnnotation(JoinPoint joinPoint, FineGrainLogging annotation);
+	public void logBeforeAnnotation(JoinPoint joinPoint);
 	
-	/**
-	 * Log after annotation execution
-	 *
-	 * @param joinPoint the join point
-	 */
-	public void logAfterAnnotation(JoinPoint joinPoint, FineGrainLogging annotation);
-
 }

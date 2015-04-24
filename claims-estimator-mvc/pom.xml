@@ -15,9 +15,9 @@
 	<name>claims-estimator-mvc</name>
 
 	<properties>
-		<jacoco.class.coverage>0.17</jacoco.class.coverage>
-		<jacoco.method.coverage>0.16</jacoco.method.coverage>
-		<jacoco.line.coverage>0.14</jacoco.line.coverage>
+		<jacoco.class.coverage>0.97</jacoco.class.coverage>
+		<jacoco.method.coverage>0.96</jacoco.method.coverage>
+		<jacoco.line.coverage>0.94</jacoco.line.coverage>
 	</properties>
 
 	<dependencies>
@@ -37,7 +37,7 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aop</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-mongodb</artifactId>
@@ -112,6 +112,12 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.outsideMyBox</groupId>
+			<artifactId>testUtils</artifactId>
 			<scope>test</scope>
 		</dependency>
 

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.data.mongodb.MongoDbFactory;
@@ -40,11 +41,12 @@ import com.mongodb.ServerAddress;
  */
 @Configuration
 @EnableMongoRepositories(basePackages="com.inertia.solutions.claims.mvc.domain.repository")
-@ComponentScan(basePackages = {"com.inertia.solutions.claims.mvc.domain"})
+@ComponentScan(basePackages = {"com.inertia.solutions.claims.mvc.domain",
+		"com.inertia.solutions.claims.mvc.aspect"})
 @PropertySource(value="classpath:database.properties")
+@EnableAspectJAutoProxy
 public class SpringConfiguration extends AbstractMongoConfiguration  {
 
-	/** The env. */
 	@Autowired
 	private Environment env;
 	
