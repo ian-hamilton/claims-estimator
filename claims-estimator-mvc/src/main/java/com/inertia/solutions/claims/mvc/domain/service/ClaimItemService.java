@@ -24,7 +24,7 @@ public interface ClaimItemService {
 	 *
 	 * @return the list of Items returned
 	 */
-	public List<ClaimItem> findAllClaimItems();
+	public List<ClaimItem> findAllClaimItems(String claimType);
 	
 	/**
 	 * Save claim item.

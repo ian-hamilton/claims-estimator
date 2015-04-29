@@ -30,15 +30,16 @@ public class ClaimItemServiceImplTest {
 	
 	@Before
 	public void setupMocks() {		
-		Mockito.when(mockClaimItemRepository.findAll()).thenReturn(listExpectation);
+		Mockito.when(mockClaimItemRepository.findAllByType(Mockito.anyString())).thenReturn(listExpectation);
 		Mockito.when(mockClaimItemRepository.save(Mockito.any(ClaimItem.class))).thenReturn(itemExpectation);
 	}
 	
 	@Test
 	public void testFindAllClaimItems() throws Exception {
-		List<ClaimItem> result = serviceUnderTest.findAllClaimItems();
+		final String type = "property";
+		List<ClaimItem> result = serviceUnderTest.findAllClaimItems(type);
 		Assert.assertSame("Claim Item List is not the same list as expectation", listExpectation, result);
-		Mockito.verify(mockClaimItemRepository).findAll();
+		Mockito.verify(mockClaimItemRepository).findAllByType(type);
 	}
 
 	@Test

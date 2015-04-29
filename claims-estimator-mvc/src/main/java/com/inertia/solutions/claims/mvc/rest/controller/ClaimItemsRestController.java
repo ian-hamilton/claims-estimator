@@ -41,11 +41,11 @@ public class ClaimItemsRestController {
 	@Autowired
 	ClaimItemService claimItemService;
 	
-    @RequestMapping(method = RequestMethod.GET, headers = ACCEPT_APPLICATION_JSON)
+    @RequestMapping(value = "/all", method = RequestMethod.GET, headers = ACCEPT_APPLICATION_JSON)
     @ResponseBody
     @ResponseStatus(value = HttpStatus.OK)
-	public Collection<ClaimItem> getAll() {
-    	return claimItemService.findAllClaimItems();
+	public Collection<ClaimItem> getAll(@RequestParam String claimType) {
+    	return claimItemService.findAllClaimItems(claimType);
     }
     
 

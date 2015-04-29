@@ -51,20 +51,21 @@ public class ClaimItemsRestControllerTest {
 	@Before
 	public void setup() {		
 		mockMvc = MockMvcBuilders.webAppContextSetup(this.dirtiedWebContext).build();
-
+		
 		listExpectation.add(itemExpectation);
-		Mockito.when(cs.findAllClaimItems()).thenReturn(listExpectation);	
+		Mockito.when(cs.findAllClaimItems(Mockito.anyString())).thenReturn(listExpectation);	
 		Mockito.when(cs.saveClaimItem(Mockito.any(ClaimItem.class))).thenReturn(itemExpectation);
 		Mockito.doThrow(new IllegalStateException("Test Exception")).when(cs).deleteClaimItem("throw-on-this-id");
 	}
 
 	@Test
 	public void testGetAll() throws Exception {
+		final String type = "property";
 		mockMvc.perform(
-				get("/service/claimitems").accept(MediaType.APPLICATION_JSON))
+				get("/service/claimitems").param("claimType", type).accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON));
-		Mockito.verify(cs).findAllClaimItems();
+		Mockito.verify(cs).findAllClaimItems(type);
 	}
 
 	@Test

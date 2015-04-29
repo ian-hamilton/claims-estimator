@@ -36,8 +36,8 @@ public class ClaimItemServiceImpl implements ClaimItemService {
 	 * @see com.inertia.solutions.claims.mvc.domain.service.ClaimItemService#findAllClaimItems()
 	 */
 	@Override
-	public List<ClaimItem> findAllClaimItems() {
-		return claimItemRepository.findAll();
+	public List<ClaimItem> findAllClaimItems(String claimType) {
+		return claimItemRepository.findAllByType(claimType);
 	}
 
 	/* (non-Javadoc)

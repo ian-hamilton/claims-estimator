@@ -1,6 +1,9 @@
 package com.inertia.solutions.claims.mvc.domain.repository;
 
+import java.util.List;
+
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
 
 import com.inertia.solutions.claims.mvc.domain.entity.ClaimItem;
 
@@ -19,5 +22,6 @@ import com.inertia.solutions.claims.mvc.domain.entity.ClaimItem;
  */
 public interface ClaimItemRepositoryImpl extends MongoRepository<ClaimItem, String> {
 
-	
+	@Query("{claimType : ?0 }")
+	public List<ClaimItem> findAllByType(String claimType);
 }
