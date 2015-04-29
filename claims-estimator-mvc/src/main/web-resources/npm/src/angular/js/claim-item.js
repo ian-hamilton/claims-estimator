@@ -4,6 +4,9 @@ claimItemServices.factory('ClaimItems', [ '$resource', function($resource) {
 			method : 'GET',
 			isArray : true
 		},
+		queryAll : {
+			method : 'GET'
+		},
 		save : {
 			method:'POST'
 		},
