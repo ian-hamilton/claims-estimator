@@ -24,6 +24,7 @@ module.exports = function(grunt) {
       core: {
         src: [
           'js/claim-maintenance.js',
+          'js/claim-item.js',
           'js/util.js'
         ],
         dest: 'dist/js/<%= pkg.name %>.js'

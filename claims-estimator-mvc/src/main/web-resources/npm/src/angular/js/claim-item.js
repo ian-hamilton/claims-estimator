@@ -5,13 +5,20 @@ claimItemServices.factory('ClaimItems', [ '$resource', function($resource) {
 			isArray : true
 		},
 		queryAll : {
-			method : 'GET'
+			method : 'GET',
+			url: '/claims-estimator-mvc/service/claimitem/all',
+			param: {claimType:'@claimType'},
+			isArray : true
 		},
 		save : {
 			method:'POST'
 		},
 		remove : {
 			method: 'DELETE'
+		},
+		head : {
+			method: 'GET',
+			url: '/claims-estimator-mvc/service/claimitems/testHead',
 		}
 	});
 }]);
@@ -38,6 +45,17 @@ claimMaintenanceControllers.controller('ClaimItemMaintenanceController', [
 			        enableRowSelection: true,
 			        plugins: [new ngGridFlexibleHeightPlugin({ maxHeight : 1000})]
 			    };
+			    
+			    
+			 $scope.loadProperties = function() {
+				 var head = ClaimItems.head();
+				 var formFields = "[";
+				 $.each(head, function(key, value) {
+						 formFields += "{name:" + key + " type:" + value.type + "],";
+				 });
+				 formFields += "]";
+				 $scopeFormFields = formFields;				 
+			 };   	
 			    
 			 $scope.addRow = function() {
 			      $scope.claimItems.push({claimItemName: 'Empty', claimItemAmount: 0});

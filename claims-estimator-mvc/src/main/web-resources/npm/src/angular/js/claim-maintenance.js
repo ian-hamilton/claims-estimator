@@ -25,6 +25,10 @@ claimMaintenanceApp.config(['$stateProvider', '$urlRouterProvider', function($st
 		url : '/home-item-list/:claimType',
 		templateUrl : 'html/maintenance/home-item-list.html',
 		controller : 'ClaimItemMaintenanceController'
-	});
+	}).state('newItem', {
+		url : '/newItem',
+		templateUrl : 'html/maintenance/new-item.html',
+		controller : 'ClaimItemMaintenanceController'
+	});;
 	
 } ]);

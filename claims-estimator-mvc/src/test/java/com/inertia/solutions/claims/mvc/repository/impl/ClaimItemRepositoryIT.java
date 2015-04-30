@@ -31,7 +31,7 @@ public class ClaimItemRepositoryIT {
 	@Test
 	public void testSaveClaimItem() {
 		ClaimItem item = new ClaimItem();
-		item.setClaimItemAmount(new Double(10));
+		item.setTotalAmount(new Double(10));
 		item.setClaimItemDesc("Test Desc");
 		item.setClaimItemName("Test Name");
 		

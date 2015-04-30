@@ -2,6 +2,7 @@ package com.inertia.solutions.claims.mvc.rest.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.head;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -62,9 +63,8 @@ public class ClaimItemsRestControllerTest {
 	public void testGetAll() throws Exception {
 		final String type = "property";
 		mockMvc.perform(
-				get("/service/claimitems").param("claimType", type).accept(MediaType.APPLICATION_JSON))
-				.andExpect(status().isOk())
-				.andExpect(content().contentType(MediaType.APPLICATION_JSON));
+				get("/service/claimitems/all").param("claimType", type).accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk());
 		Mockito.verify(cs).findAllClaimItems(type);
 	}
 
@@ -95,6 +95,11 @@ public class ClaimItemsRestControllerTest {
 				.andExpect(status().isBadRequest());
 	}
 
-
+	@Test
+	public void testHead() throws Exception {
+		mockMvc.perform(
+					head("/service/claimitems").accept(MediaType.APPLICATION_JSON))
+					.andExpect(status().isOk());
+	}
 
 }

@@ -18,22 +18,20 @@
 <div class=row>
 	<div class="col-md-2"></div>
 	<div class="col-md-10">
-		<ul class="nav nav-pills">
-			<li role="presentation" class="active"><a ui-sref='/'>Home</a></li>
-			<li role="presentation"><a ui-sref='property-item-list/property'>Property Items</a></li>
-			<li role="presentation"><a ui-sref='commercial-item-list/commercial'>Commercial Items</a></li>
-			<li role="presentation"><a ui-sref='home-item-list/home'>Home Items</a></li>
-		</ul>
+
 	</div>
 </div>
 
-<div class="row">
+<div class="row" ng-app="claimMaintenanceApp">
 	<div class="col-md-2"></div>
 	<div class="col-md-6">
 		<div ui-view></div>
 	</div>
 	<div class="col-md-4">
-		<a ui-sref='item'>Back to Item Maintenance</a>
+		<a ui-sref='propertyItem'>Property Item Maintenance</a> <br />
+		<a ui-sref='commercialItem'>Commercial Item Maintenance</a> <br />
+		<a ui-sref='homeItem'>Home Item Maintenance</a> <br />
+		<a ui-sref='newItem'>New Item</a>
 	</div>
 </div>
 

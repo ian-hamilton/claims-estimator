@@ -45,6 +45,7 @@
    <script src="https://cdnjs.cloudflare.com/ajax/libs/ng-grid/2.0.11/ng-grid-flexible-height.min.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/ng-grid/2.0.11/ng-grid-reorderable.min.js"></script>
 
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.14/angular-ui-router.min.js"></script>
    <script type="text/javascript" src="js/claims-estimator-angular.js"></script>
  
 </head>

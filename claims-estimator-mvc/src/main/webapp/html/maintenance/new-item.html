@@ -1,0 +1,13 @@
+<button ng-click="loadProperties()">Load Properties</button>
+
+  <p ng-repeat="field in formFields">
+            <input 
+                dynamic-name="field.name"
+                type="{{ field.type }}"
+                placeholder="{{ field.name }}"
+                ng-model="field.value"
+                required
+            >
+            <span ng-show="myForm.{{field.name}}.$dirty && myForm.{{field.name}}.$error.required">Required!</span>
+     </p>
+    <button ng-disabled="myForm.$invalid">Submit</button>    

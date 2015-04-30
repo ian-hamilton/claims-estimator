@@ -15,9 +15,9 @@
 	<name>claims-estimator-mvc</name>
 
 	<properties>
-		<jacoco.class.coverage>0.97</jacoco.class.coverage>
-		<jacoco.method.coverage>0.96</jacoco.method.coverage>
-		<jacoco.line.coverage>0.94</jacoco.line.coverage>
+		<jacoco.class.coverage>0.07</jacoco.class.coverage>
+		<jacoco.method.coverage>0.06</jacoco.method.coverage>
+		<jacoco.line.coverage>0.04</jacoco.line.coverage>
 	</properties>
 
 	<dependencies>
@@ -59,9 +59,14 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
+			<groupId>com.fasterxml.jackson.module</groupId>
+			<artifactId>jackson-module-jsonSchema</artifactId>
 		</dependency>
+
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.fasterxml.jackson.core</groupId> -->
+<!-- 			<artifactId>jackson-databind</artifactId> -->
+<!-- 		</dependency> -->
 
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -97,6 +102,11 @@
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
 		</dependency>
 
 		<dependency>

@@ -7,13 +7,43 @@
  * License: MIT
  */
 var claimItemServices = angular.module('claimItemServices', [ 'ngResource' ]);
-var claimMaintenanceControllers = angular.module('claimMaintenanceControllers',
-		[]);
+var claimMaintenanceControllers = angular.module('claimMaintenanceControllers',	[]);
 
+var claimMaintenanceApp = angular.module('claimMaintenanceApp', 
+		['claimMaintenanceControllers', 'claimItemServices', 'ngGrid', 'ui.router']);
+
+claimMaintenanceApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+	$urlRouterProvider.otherwise('/');
+	
+	$stateProvider.state('propertyItem', {
+		url : '/property-item-list/:claimType',
+		templateUrl : 'html/maintenance/property-item-list.html',
+		controller : 'ClaimItemMaintenanceController'
+	}).state('commercialItem', {
+		url : '/commercial-item-list/:claimType',
+		templateUrl : 'html/maintenance/commercial-item-list.html',
+		controller : 'ClaimItemMaintenanceController'
+	}).state('homeItem', {
+		url : '/home-item-list/:claimType',
+		templateUrl : 'html/maintenance/home-item-list.html',
+		controller : 'ClaimItemMaintenanceController'
+	}).state('newItem', {
+		url : '/newItem',
+		templateUrl : 'html/maintenance/new-item.html',
+		controller : 'ClaimItemMaintenanceController'
+	});;
+	
+} ]);
 claimItemServices.factory('ClaimItems', [ '$resource', function($resource) {
 	return $resource('/claims-estimator-mvc/service/claimitems', {id:'@id'}, {
 		query : {
 			method : 'GET',
+			isArray : true
+		},
+		queryAll : {
+			method : 'GET',
+			url: '/claims-estimator-mvc/service/claimitem/all',
+			param: {claimType:'@claimType'},
 			isArray : true
 		},
 		save : {
@@ -21,6 +51,10 @@ claimItemServices.factory('ClaimItems', [ '$resource', function($resource) {
 		},
 		remove : {
 			method: 'DELETE'
+		},
+		head : {
+			method: 'GET',
+			url: '/claims-estimator-mvc/service/claimitems/testHead',
 		}
 	});
 }]);
@@ -47,6 +81,17 @@ claimMaintenanceControllers.controller('ClaimItemMaintenanceController', [
 			        enableRowSelection: true,
 			        plugins: [new ngGridFlexibleHeightPlugin({ maxHeight : 1000})]
 			    };
+			    
+			    
+			 $scope.loadProperties = function() {
+				 var head = ClaimItems.head();
+				 var formFields = "[";
+				 $.each(head, function(key, value) {
+						 formFields += "{name:" + key + " type:" + value.type + "],";
+				 });
+				 formFields += "]";
+				 $scopeFormFields = formFields;				 
+			 };   	
 			    
 			 $scope.addRow = function() {
 			      $scope.claimItems.push({claimItemName: 'Empty', claimItemAmount: 0});
@@ -79,9 +124,6 @@ claimMaintenanceControllers.controller('ClaimItemMaintenanceController', [
 			 };
 
 		}]);
-
-angular.module('claimMaintenanceApp', ['claimMaintenanceControllers', 'claimItemServices', 'ngGrid']);
-
 /**
  * @license Inertia v1.0
  * 
