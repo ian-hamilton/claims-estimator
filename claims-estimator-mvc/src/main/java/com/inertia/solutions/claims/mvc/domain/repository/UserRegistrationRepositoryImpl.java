@@ -9,7 +9,7 @@ import com.inertia.solutions.claims.mvc.domain.entity.UserRegistration;
 
 public interface UserRegistrationRepositoryImpl extends MongoRepository<UserRegistration, String>{
 	
-	@Query("{email : ?0}")
-	public List<UserRegistration> getUserRegistrationByEmail(String email);
+	@Query("{emailAddress : ?0}")
+	public List<UserRegistration> getUserRegistrationByEmail(String emailAddress);
 
 }

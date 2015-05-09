@@ -41,6 +41,8 @@ public class UserRegistration {
 	private String city;
 	
 	private String state;
+	
+	private String zip;
 
 	public String getFirstName() {
 		return firstName;
@@ -104,6 +106,14 @@ public class UserRegistration {
 
 	public void setState(String state) {
 		this.state = state;
+	}
+
+	public String getZip() {
+		return zip;
+	}
+
+	public void setZip(String zip) {
+		this.zip = zip;
 	}
 	
 }

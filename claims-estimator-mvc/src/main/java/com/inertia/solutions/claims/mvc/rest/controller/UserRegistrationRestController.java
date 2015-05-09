@@ -29,7 +29,7 @@ public class UserRegistrationRestController {
     @ResponseStatus(value = HttpStatus.OK)
     public UserRegistration post(@RequestBody UserRegistration userRegistration) throws Exception {
     	List<UserRegistration>  result = repository.getUserRegistrationByEmail(userRegistration.getEmailAddress());
-    	if(result != null && result.size() > 0){
+    	if(result.size() > 0){
     		throw new Exception("email address already exists");
     	}
     	

@@ -23,6 +23,7 @@ module.exports = function(grunt) {
       },
       core: {
         src: [
+          'js/registration.js',    
           'js/claim-maintenance.js',
           'js/claim-item.js',
           'js/util.js'
