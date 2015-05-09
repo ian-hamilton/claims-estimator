@@ -51,6 +51,7 @@ registrationControllers.controller('RegistrationController',
 					};
 					
 					$scope.save = function(userRegistration) {
+						$.blockUI({ message: '<h1><img src="busy.gif" /> Just a moment...</h1>' }); 
 						userRegistration.state = $scope.stateSelected.abbreviation;
 						Registration.save(userRegistration).$promise.then(
 							function (userData){

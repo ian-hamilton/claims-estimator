@@ -53,6 +53,7 @@ registrationControllers.controller('RegistrationController',
 					};
 					
 					$scope.save = function(userRegistration) {
+						$.blockUI({ message: '<h1><img src="busy.gif" /> Just a moment...</h1>' }); 
 						userRegistration.state = $scope.stateSelected.abbreviation;
 						Registration.save(userRegistration).$promise.then(
 							function (userData){
@@ -83,17 +84,9 @@ var claimMaintenanceApp = angular.module('claimMaintenanceApp',
 claimMaintenanceApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 	$urlRouterProvider.otherwise('/');
 	
-	$stateProvider.state('propertyItem', {
-		url : '/property-item-list/:claimType',
-		templateUrl : 'html/maintenance/property-item-list.html',
-		controller : 'ClaimItemMaintenanceController'
-	}).state('commercialItem', {
-		url : '/commercial-item-list/:claimType',
-		templateUrl : 'html/maintenance/commercial-item-list.html',
-		controller : 'ClaimItemMaintenanceController'
-	}).state('homeItem', {
-		url : '/home-item-list/:claimType',
-		templateUrl : 'html/maintenance/home-item-list.html',
+	$stateProvider.state('Item', {
+		url : '/item-list/:claimType',
+		templateUrl : 'html/maintenance/item-list.html',
 		controller : 'ClaimItemMaintenanceController'
 	}).state('newItem', {
 		url : '/newItem',
@@ -125,10 +118,11 @@ claimItemServices.factory('ClaimItems', [ '$resource', function($resource) {
 var removeTemplate = '<input type="button" value="remove" ng-click="removeRow($index)" />';
 
 claimMaintenanceControllers.controller('ClaimItemMaintenanceController', [
-		'$scope', 'ClaimItems', function($scope, ClaimItems) {
+		'$scope', 'ClaimItems', '$stateParams', function($scope, ClaimItems, $state) {
 			$scope.claimItems = ClaimItems.claims.query();
 			$scope.orderProp = 'claimItemName';
 			$scope.totalServerItems = $scope.claimItems.length;
+			$scope.regheader = $state.claimType;
 			
 			    $scope.gridOptions = { 
 			        data: 'claimItems',

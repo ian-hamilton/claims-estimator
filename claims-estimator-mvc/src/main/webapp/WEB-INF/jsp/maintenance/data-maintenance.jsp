@@ -1,6 +1,7 @@
 <%@ include file="/WEB-INF/jsp/includes.jsp"%>
 <%@ include file="/WEB-INF/jsp/header.jsp"%>
 
+<div  ng-app="claimMaintenanceApp" >
 <div class="row clearfix">
 	<div class="jumbotron">
 		<div class="container">
@@ -18,22 +19,18 @@
 <div class=row>
 	<div class="col-md-2"></div>
 	<div class="col-md-10">
-
+	<ul class="nav nav-pills">
+	  <li role="presentation"  ui-sref-active="active"><a ui-sref="Item({claimType:'property'})">Property Item Maintenance</a></li>
+	  <li role="presentation"  ui-sref-active="active"><a ui-sref="Item({claimType:'home'})">Home Item Maintenance</a></li>
+	  <li role="presentation"  ui-sref-active="active"><a ui-sref="Item({claimType:'commercial'})">Commercial Item Maintenance</a></li>
+	  <li role="presentation"  ui-sref-active="active"><a ui-sref="newItem({claimType:'New Item'})">New Item</a></li>
+	</ul>
 	</div>
 </div>
 
-<div class="row" ng-app="claimMaintenanceApp">
-	<div class="col-md-2"></div>
-	<div class="col-md-6">
-		<div ui-view></div>
-	</div>
-	<div class="col-md-4">
-		<a ui-sref='propertyItem'>Property Item Maintenance</a> <br />
-		<a ui-sref='commercialItem'>Commercial Item Maintenance</a> <br />
-		<a ui-sref='homeItem'>Home Item Maintenance</a> <br />
-		<a ui-sref='newItem'>New Item</a>
-	</div>
-</div>
+	<div ui-view></div>
 
+
+</div>
 
 <%@ include file="/WEB-INF/jsp/footer.jsp"%>

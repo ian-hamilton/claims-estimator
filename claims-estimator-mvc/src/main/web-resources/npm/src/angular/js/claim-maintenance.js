@@ -13,17 +13,9 @@ var claimMaintenanceApp = angular.module('claimMaintenanceApp',
 claimMaintenanceApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 	$urlRouterProvider.otherwise('/');
 	
-	$stateProvider.state('propertyItem', {
-		url : '/property-item-list/:claimType',
-		templateUrl : 'html/maintenance/property-item-list.html',
-		controller : 'ClaimItemMaintenanceController'
-	}).state('commercialItem', {
-		url : '/commercial-item-list/:claimType',
-		templateUrl : 'html/maintenance/commercial-item-list.html',
-		controller : 'ClaimItemMaintenanceController'
-	}).state('homeItem', {
-		url : '/home-item-list/:claimType',
-		templateUrl : 'html/maintenance/home-item-list.html',
+	$stateProvider.state('Item', {
+		url : '/item-list/:claimType',
+		templateUrl : 'html/maintenance/item-list.html',
 		controller : 'ClaimItemMaintenanceController'
 	}).state('newItem', {
 		url : '/newItem',

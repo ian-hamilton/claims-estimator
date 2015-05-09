@@ -21,10 +21,11 @@ claimItemServices.factory('ClaimItems', [ '$resource', function($resource) {
 var removeTemplate = '<input type="button" value="remove" ng-click="removeRow($index)" />';
 
 claimMaintenanceControllers.controller('ClaimItemMaintenanceController', [
-		'$scope', 'ClaimItems', function($scope, ClaimItems) {
+		'$scope', 'ClaimItems', '$stateParams', function($scope, ClaimItems, $state) {
 			$scope.claimItems = ClaimItems.claims.query();
 			$scope.orderProp = 'claimItemName';
 			$scope.totalServerItems = $scope.claimItems.length;
+			$scope.regheader = $state.claimType;
 			
 			    $scope.gridOptions = { 
 			        data: 'claimItems',
