@@ -8,7 +8,7 @@ var claimItemServices = angular.module('claimItemServices', [ 'ngResource' ]);
 var claimMaintenanceControllers = angular.module('claimMaintenanceControllers',	[]);
 
 var claimMaintenanceApp = angular.module('claimMaintenanceApp', 
-		['claimMaintenanceControllers', 'claimItemServices', 'ngGrid', 'ui.router']);
+		['claimMaintenanceControllers', 'claimItemServices', 'ngGrid', 'ui.router', 'formly', 'formlyBootstrap']);
 
 claimMaintenanceApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 	$urlRouterProvider.otherwise('/');
@@ -16,7 +16,7 @@ claimMaintenanceApp.config(['$stateProvider', '$urlRouterProvider', function($st
 	$stateProvider.state('Item', {
 		url : '/item-list/:claimType',
 		templateUrl : 'html/maintenance/item-list.html',
-		controller : 'ClaimItemMaintenanceController'
+		controller : 'ClaimItemListMaintenanceController'
 	}).state('newItem', {
 		url : '/newItem',
 		templateUrl : 'html/maintenance/new-item.html',

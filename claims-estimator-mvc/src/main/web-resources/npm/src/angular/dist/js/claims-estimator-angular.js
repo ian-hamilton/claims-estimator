@@ -79,7 +79,7 @@ var claimItemServices = angular.module('claimItemServices', [ 'ngResource' ]);
 var claimMaintenanceControllers = angular.module('claimMaintenanceControllers',	[]);
 
 var claimMaintenanceApp = angular.module('claimMaintenanceApp', 
-		['claimMaintenanceControllers', 'claimItemServices', 'ngGrid', 'ui.router']);
+		['claimMaintenanceControllers', 'claimItemServices', 'ngGrid', 'ui.router', 'formly', 'formlyBootstrap']);
 
 claimMaintenanceApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 	$urlRouterProvider.otherwise('/');
@@ -87,7 +87,7 @@ claimMaintenanceApp.config(['$stateProvider', '$urlRouterProvider', function($st
 	$stateProvider.state('Item', {
 		url : '/item-list/:claimType',
 		templateUrl : 'html/maintenance/item-list.html',
-		controller : 'ClaimItemMaintenanceController'
+		controller : 'ClaimItemListMaintenanceController'
 	}).state('newItem', {
 		url : '/newItem',
 		templateUrl : 'html/maintenance/new-item.html',
@@ -118,11 +118,25 @@ claimItemServices.factory('ClaimItems', [ '$resource', function($resource) {
 var removeTemplate = '<input type="button" value="remove" ng-click="removeRow($index)" />';
 
 claimMaintenanceControllers.controller('ClaimItemMaintenanceController', [
+	'$scope', 'ClaimItems', '$stateParams', function($scope, ClaimItems, $state) {
+		var vm = this;
+		vm.claimItem = {};
+		ClaimItems.claimsMetadata.query().$promise.then(
+						        function( head ){
+						        	vm.formFields = claims.generateFields(head);
+								 }
+						      );
+			
+						
+     }]);
+                                                       
+claimMaintenanceControllers.controller('ClaimItemListMaintenanceController', [
 		'$scope', 'ClaimItems', '$stateParams', function($scope, ClaimItems, $state) {
 			$scope.claimItems = ClaimItems.claims.query();
 			$scope.orderProp = 'claimItemName';
 			$scope.totalServerItems = $scope.claimItems.length;
 			$scope.regheader = $state.claimType;
+			
 			
 			    $scope.gridOptions = { 
 			        data: 'claimItems',
@@ -137,26 +151,8 @@ claimMaintenanceControllers.controller('ClaimItemMaintenanceController', [
 			        enableCellSelection: true,
 			        enableRowSelection: true,
 			        plugins: [new ngGridFlexibleHeightPlugin({ maxHeight : 1000})]
-			    };
-			    
-			    
-				 $scope.loadProperties = function() {
-					 ClaimItems.claimsMetadata.query().$promise.then(
-								        function( head ){
-								        	 var formFields = '{ "name" : "FormFields", "fields" : [';
-								        	 var appender = '';
-								        	 $.each(head.properties, function(key, value) {
-								        		 formFields += appender;
-												 formFields += '{"label" : "' + key + '", "name" : "' + key + '", "type" : "text", "required" : true, "data" :""}';
-												 appender = ',';
-								        	 });
-										 formFields += "]}";	
-										 $scope.entity = JSON.parse(formFields);
-										 }
-								      );
-					 
-							 
-				 };   	
+			    };    
+				 	
 			    
 			 $scope.addRow = function() {
 			      $scope.claimItems.push({claimItemName: 'Empty', claimItemAmount: 0});
@@ -190,6 +186,7 @@ claimMaintenanceControllers.controller('ClaimItemMaintenanceController', [
 
 		}]);
 
+
 claimMaintenanceApp.directive("dynamicName",function($compile){
     return {
         restrict:"A",
@@ -208,20 +205,33 @@ claimMaintenanceApp.directive("dynamicName",function($compile){
  * Inertia, Inc. License: MIT
  */ 
 
-    // unblock when ajax activity stops
-    $(document).ajaxStop($.unblockUI); 
- 
-    function test() { 
-        $.ajax({ url: 'wait.php', cache: false }); 
-    } 
-
-    $(document).ready(function() { 
-    	
- 
-    $(document).ready(function() { 
-        $('#saveAllItems2').click(function() { 
-            $.blockUI({ message: '<h1><img src="busy.gif" /> Just a moment...</h1>' }); 
-        }); 
-    });
-    
-    });
+var claims = {
+		
+		generateFields : function(schema) {
+			var index=0;
+			var formFields = new Array();
+			
+			 $.each(schema.properties, function(key, value) {
+        		var formField = new Object();
+        		formField.templateOptions = new Object();
+        		
+        		formField.key = key;
+        		
+        		switch(value.type) {
+        			case 'string':
+        				formField.type = 'input';
+        				break;
+        			default:
+        				formField.type = 'input';
+        		}
+        		
+        		formField.templateOptions.required = value.required;
+        		formField.templateOptions.label = key;        		
+        		
+        		formFields[index++] = formField;
+        	 });
+			 
+			 return formFields;
+		}
+		
+}

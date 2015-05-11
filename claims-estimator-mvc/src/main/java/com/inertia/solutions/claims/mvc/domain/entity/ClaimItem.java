@@ -9,6 +9,9 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 /**
  * @author Ian Hamilton. Basic Bean (Pojo) 
  *
@@ -55,6 +58,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
  *
  */
 @Document(collection = "claimItem")
+@JsonPropertyOrder({ "id", "claimItemName", "claimItemDesc", "totalAmount", 
+	"removeAmount", "replaceAmount", "category", "sel", "defaultCalculation", "notes", "claimType" })
 public class ClaimItem  {
 	
 	@Id
@@ -65,6 +70,7 @@ public class ClaimItem  {
 	}
 	
 	@NotNull
+	@JsonProperty(value = "Claim Item Name", index = 0, required = true) 
 	private String claimItemName;
 
 	@NotNull
