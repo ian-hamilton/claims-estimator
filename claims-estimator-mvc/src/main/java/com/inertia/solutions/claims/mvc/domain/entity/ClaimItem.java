@@ -63,6 +63,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class ClaimItem  {
 	
 	@Id
+	@JsonProperty(value = "Id", index = 0, required = false)
 	private String id;
 
 	public String getId() {
@@ -70,33 +71,41 @@ public class ClaimItem  {
 	}
 	
 	@NotNull
-	@JsonProperty(value = "Claim Item Name", index = 0, required = true) 
+	@JsonProperty(value = "Claim_Item_Name", index = 1, required = true) 
 	private String claimItemName;
 
 	@NotNull
+	@JsonProperty(value = "Item_Description", index = 2, required = true) 
 	private String claimItemDesc;
 	
 	@NotNull
+	@JsonProperty(value = "Total_Amount", index = 3, required = true)
 	private Double totalAmount;
 	
 	@NotNull
+	@JsonProperty(value = "Removal_Amount", index = 4, required = true)
 	private Double removeAmount;
 	
 	@NotNull
+	@JsonProperty(value = "Replace_Amount", index = 5, required = true) 
 	private Double replaceAmount;
 	
 	@NotNull
+	@JsonProperty(value = "Category", index = 6, required = true) 
 	private String category;
 	
-	@NotNull 
+	@JsonProperty(value = "Sel", index = 7, required = false) 
 	String sel;
 	
 	@NotNull
+	@JsonProperty(value = "Default_Calculation", index = 8, required = true) 
 	String defaultCalculation;
 	
+	@JsonProperty(value = "Notes", index = 9, required = false) 
 	String notes;
 	
 	@NotNull
+	@JsonProperty(value = "Item_Type", index = 10, required = true) 
 	String claimType;
 
 	public String getClaimItemName() {

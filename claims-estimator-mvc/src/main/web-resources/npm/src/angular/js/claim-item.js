@@ -2,7 +2,7 @@ claimItemServices.factory('ClaimItems', [ '$resource', function($resource) {
 	return {
 		claims : $resource('/claims-estimator-mvc/service/claimitems', {id:'@id'}, {
 			query : { method : 'GET',
-					url: '/claims-estimator-mvc/service/claimitems/all?claimType=property',
+					url: '/claims-estimator-mvc/service/claimitems/all',
 					param: {claimType:'@claimType'},
 					isArray : true
 				},
@@ -31,19 +31,22 @@ claimMaintenanceControllers.controller('ClaimItemMaintenanceController', [
 						      );
 		
 		vm.submit = function() {
-			 ClaimItems.claims.save({id:vm.claimItem.id}, vm.claimItem);
+			 ClaimItems.claims.save({id:vm.claimItem.id}, vm.claimItem).$promise.then(
+					 function(result) {
+						 vm.claimItem = result;
+		});
 			 
 			 //hack for visual
-			 setTimeout(function(){
-				 $.unblockUI(); 
-			  }, 2000);
-		}	
+				 setTimeout(function(){
+					 $.unblockUI(); 
+				  }, 1000);
+		};	
 						
      }]);
                                                        
 claimMaintenanceControllers.controller('ClaimItemListMaintenanceController', [
 		'$scope', 'ClaimItems', '$stateParams', function($scope, ClaimItems, $state) {
-			$scope.claimItems = ClaimItems.claims.query();
+			$scope.claimItems = ClaimItems.claims.query({'claimType' : $state.claimType});
 			$scope.orderProp = 'claimItemName';
 			$scope.totalServerItems = $scope.claimItems.length;
 			$scope.regheader = $state.claimType;

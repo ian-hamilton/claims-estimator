@@ -93,8 +93,7 @@ public class ClaimItemsRestController {
         JsonSchemaGenerator generator = new JsonSchemaGenerator(mapper);
         JsonSchema jsonSchema = generator.generateSchema(ClaimItem.class);
         String ret =  mapper.writeValueAsString(jsonSchema);
-        log.info(ret);
-        return ret;
+        return HEAD;
     }  
     
     
@@ -105,5 +104,53 @@ public class ClaimItemsRestController {
     	System.out.println("-----------------" + ex.getMessage());
 		return ex.getMessage();
 	}
+    
+    final String HEAD = "{\n"+
+    		" \"type\":\"object\",\n"+
+    		" \"id\":\"urn:jsonschema:com:inertia:solutions:claims:mvc:domain:entity:ClaimItem\",\n"+
+    		" \"properties\":{\n"+
+    		" \"Id\":{\n"+
+    		" \"type\":\"id\"\n"+
+    		" },\n"+
+    		" \"Claim_Item_Name\":{\n"+
+    		" \"type\":\"string\",\n"+
+    		" \"required\":true\n"+
+    		" }, \n"+
+    		" \"Item_Description\":{\n"+
+    		" \"type\":\"string\",\n"+
+    		" \"required\":true\n"+
+    		" },\n"+
+    		" \"Notes\":{\n"+
+    		" \"type\":\"textarea\"\n"+
+    		" },\n"+
+    		" \"Category\":{\n"+
+    		" \"type\":\"string\",\n"+
+    		" \"required\":true\n"+
+    		" },\n"+
+    		" \"Sel\":{\n"+
+    		" \"type\":\"string\"\n"+
+    		" },\n"+
+    		" \"Default_Calculation\":{\n"+
+    		" \"type\":\"string\",\n"+
+    		" \"required\":true\n"+
+    		" },\n"+
+    		" \"Replace_Amount\":{\n"+
+    		" \"type\":\"number\",\n"+
+    		" \"required\":true\n"+
+    		" },\n"+
+    		" \"Removal_Amount\":{\n"+
+    		" \"type\":\"number\",\n"+
+    		" \"required\":true\n"+
+    		" },\n"+
+    		" \"Total_Amount\":{\n"+
+    		" \"type\":\"number\",\n"+
+    		" \"required\":true\n"+
+    		" },\n"+
+    		" \"Item_Type\":{\n"+
+    		" \"type\":\"string\",\n"+
+    		" \"required\":true\n"+
+    		" }\n"+
+    		" }\n"+
+    		"}";
 
 }

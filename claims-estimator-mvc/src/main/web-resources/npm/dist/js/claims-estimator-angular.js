@@ -99,7 +99,7 @@ claimItemServices.factory('ClaimItems', [ '$resource', function($resource) {
 	return {
 		claims : $resource('/claims-estimator-mvc/service/claimitems', {id:'@id'}, {
 			query : { method : 'GET',
-					url: '/claims-estimator-mvc/service/claimitems/all?claimType=property',
+					url: '/claims-estimator-mvc/service/claimitems/all',
 					param: {claimType:'@claimType'},
 					isArray : true
 				},
@@ -128,14 +128,22 @@ claimMaintenanceControllers.controller('ClaimItemMaintenanceController', [
 						      );
 		
 		vm.submit = function() {
-			 ClaimItems.claims.save({id:vm.claimItem.id}, vm.claimItem);
-		}	
+			 ClaimItems.claims.save({id:vm.claimItem.id}, vm.claimItem).$promise.then(
+					 function(result) {
+						 vm.claimItem = result;
+		});
+			 
+			 //hack for visual
+				 setTimeout(function(){
+					 $.unblockUI(); 
+				  }, 1000);
+		};	
 						
      }]);
                                                        
 claimMaintenanceControllers.controller('ClaimItemListMaintenanceController', [
 		'$scope', 'ClaimItems', '$stateParams', function($scope, ClaimItems, $state) {
-			$scope.claimItems = ClaimItems.claims.query();
+			$scope.claimItems = ClaimItems.claims.query({'claimType' : $state.claimType});
 			$scope.orderProp = 'claimItemName';
 			$scope.totalServerItems = $scope.claimItems.length;
 			$scope.regheader = $state.claimType;
@@ -208,6 +216,32 @@ claimMaintenanceControllers.controller('ClaimItemListMaintenanceController', [
  * Inertia, Inc. License: MIT
  */ 
 
+  // unblock when ajax activity stops
+  // unblock when ajax activity stops
+    $(document).ajaxStop($.unblockUI); 
+ 
+    function test() { 
+       $.ajax({ url: 'wait.php', cache: false }); 
+    } 
+
+    $(document).ready(function() { 
+    	
+ 
+    $(document).ready(function() { 
+        $('#saveAllItems2').click(function() { 
+            $.blockUI({ message: '<h1><img src="busy.gif" /> Just a moment...</h1>' }); 
+        }); 
+    });
+    
+   }); 
+
+
+
+String.prototype.replaceAll = function (find, replace) {
+    var str = this;
+    return str.replace(new RegExp(find, 'g'), replace);
+};
+
 var claims = {
 		
 		generateFields : function(schema) {
@@ -224,12 +258,21 @@ var claims = {
         			case 'string':
         				formField.type = 'input';
         				break;
+        			case 'text':
+        				formField.type = 'textarea';
+        				formField.templateOptions.rows = 4;
+        				formField.templateOptions.cols = 15;
+        				break;
+        			case 'id':
+        				formField.type = 'input';
+        				formField.templateOptions.disabled = 'true';
+        				break;
         			default:
         				formField.type = 'input';
         		}
         		
         		formField.templateOptions.required = value.required;
-        		formField.templateOptions.label = key;        		
+        		formField.templateOptions.label = key.replaceAll("_", " ");        		
         		
         		formFields[index++] = formField;
         	 });
