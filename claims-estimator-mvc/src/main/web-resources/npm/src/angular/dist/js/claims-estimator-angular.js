@@ -126,7 +126,10 @@ claimMaintenanceControllers.controller('ClaimItemMaintenanceController', [
 						        	vm.formFields = claims.generateFields(head);
 								 }
 						      );
-			
+		
+		vm.submit = function() {
+			 ClaimItems.claims.save({id:vm.claimItem.id}, vm.claimItem);
+		}	
 						
      }]);
                                                        
@@ -187,18 +190,18 @@ claimMaintenanceControllers.controller('ClaimItemListMaintenanceController', [
 		}]);
 
 
-claimMaintenanceApp.directive("dynamicName",function($compile){
-    return {
-        restrict:"A",
-        terminal:true,
-        priority:1000,
-        link:function(scope,element,attrs){
-            element.attr('name', scope.$eval(attrs.dynamicName));
-            element.removeAttr("dynamic-name");
-            $compile(element)(scope);
-        }
-    }
-});
+//claimMaintenanceApp.directive("dynamicName",function($compile){
+//    return {
+//        restrict:"A",
+//        terminal:true,
+//        priority:1000,
+//        link:function(scope,element,attrs){
+//            element.attr('name', scope.$eval(attrs.dynamicName));
+//            element.removeAttr("dynamic-name");
+//            $compile(element)(scope);
+//        }
+//    }
+//});
 /**
  * @license Inertia v1.0
  * 
