@@ -6,7 +6,7 @@ var registrationControllers = angular.module('registrationControllers',	[]);
 var registrationApp = angular.module('registrationApp',	['registrationControllers', 'registrationService']);
 
 registrationService.factory('Registration', ['$resource', function($resource) {
-	return  $resource('/claims-estimator-mvc/service/userregistration', {},{
+	return  $resource('/service/userregistration', {},{
 		save : { method:'POST' }		
 	});	
 }]);
@@ -97,9 +97,9 @@ claimMaintenanceApp.config(['$stateProvider', '$urlRouterProvider', function($st
 } ]);
 claimItemServices.factory('ClaimItems', [ '$resource', function($resource) {
 	return {
-		claims : $resource('/claims-estimator-mvc/service/claimitems', {id:'@id'}, {
+		claims : $resource('/service/claimitems', {id:'@id'}, {
 			query : { method : 'GET',
-					url: '/claims-estimator-mvc/service/claimitems/all',
+					url: '/service/claimitems/all',
 					param: {claimType:'@claimType'},
 					isArray : true
 				},
@@ -107,9 +107,9 @@ claimItemServices.factory('ClaimItems', [ '$resource', function($resource) {
 					method:'POST'
 				}
 		}),
-		claimsMetadata : $resource('/claims-estimator-mvc/service/claimitems', {id:'@id'}, {
+		claimsMetadata : $resource('/service/claimitems', {id:'@id'}, {
 			query : { method : 'GET',
-				url: '/claims-estimator-mvc/service/claimitems/testHead'
+				url: '/service/claimitems/testHead'
 			}
 		})
 	};

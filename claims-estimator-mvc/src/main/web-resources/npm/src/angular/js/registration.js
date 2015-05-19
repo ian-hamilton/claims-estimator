@@ -4,7 +4,7 @@ var registrationControllers = angular.module('registrationControllers',	[]);
 var registrationApp = angular.module('registrationApp',	['registrationControllers', 'registrationService']);
 
 registrationService.factory('Registration', ['$resource', function($resource) {
-	return  $resource('/claims-estimator-mvc/service/userregistration', {},{
+	return  $resource('/service/userregistration', {},{
 		save : { method:'POST' }		
 	});	
 }]);
